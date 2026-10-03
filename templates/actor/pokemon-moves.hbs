@@ -1,0 +1,11 @@
+<section class="tab lobia-sheet-body lobia-pokemon-moves{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+  {{#if pokemonMoves.length}}
+  <div class="lobia-pokemon-move-list">
+    {{#each pokemonMoves}}
+    <article class="lobia-move-card">{{{this.cardHtml}}}{{#if this.isMetronome}}<button type="button" class="lobia-metronome-roll" data-action="rollMetronome"><i class="fa-solid fa-dice-d20"></i> {{localize "LOBIA.Metronome.roll"}}</button>{{/if}}</article>
+    {{/each}}
+  </div>
+  {{else}}
+  <p class="lobia-tree-note">{{localize "LOBIA.PokemonMoves.empty"}}</p>
+  {{/if}}
+</section>

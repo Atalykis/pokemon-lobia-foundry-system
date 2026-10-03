@@ -1,0 +1,30 @@
+{{! One type's skill tree: the six bonus labels, in the shape the trainer sheet draws. }}
+<div class="lobia-item-part">
+<header class="lobia-header">
+  <div class="lobia-header-fields">
+    <input class="lobia-name" type="text" name="name" value="{{item.name}}" placeholder="{{localize 'LOBIA.Name'}}">
+    <select class="lobia-type-chip-select lobia-type-{{system.type}}" name="system.type">
+      {{selectOptions typeChoices selected=system.type localize=true}}
+    </select>
+  </div>
+</header>
+
+<div class="lobia-sheet-body">
+  <p class="lobia-arbre-hint">{{localize "LOBIA.Tree.editHint"}}</p>
+
+  <div class="lobia-arbre-rows">
+    {{#each rows}}
+    <div class="lobia-arbre-row cells-{{this.length}}">
+      {{#each this}}
+      {{#if this.editable}}
+      <input class="lobia-arbre-cell editable" type="text" name="system.labels.{{this.slot}}"
+             value="{{this.value}}" placeholder="{{this.slot}}">
+      {{else}}
+      <span class="lobia-arbre-cell kind-{{this.kind}}">{{this.label}}</span>
+      {{/if}}
+      {{/each}}
+    </div>
+    {{/each}}
+  </div>
+</div>
+</div>

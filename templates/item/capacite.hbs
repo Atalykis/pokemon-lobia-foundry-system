@@ -1,0 +1,20 @@
+<div class="lobia-item-part">
+  <header class="lobia-header">
+    <img class="lobia-portrait" src="{{item.img}}" data-edit="img" data-action="editImage" alt="{{item.name}}">
+    <div class="lobia-header-fields">
+      <input class="lobia-name" type="text" name="name" value="{{item.name}}" placeholder="{{localize 'LOBIA.Name'}}">
+      <div class="lobia-skill-meta">
+        <select class="lobia-type-chip-select lobia-type-{{system.type}}" name="system.type">{{selectOptions typeChoices selected=system.type localize=true}}</select>
+        <select name="system.category">{{selectOptions categoryChoices selected=system.category blank=""}}</select>
+      </div>
+    </div>
+  </header>
+  <div class="lobia-sheet-body">
+    <label class="lobia-skill-key"><span>{{localize "LOBIA.Skill.key"}}</span><input type="text" name="system.key" value="{{system.key}}" data-tooltip="{{localize 'LOBIA.Skill.keyHint'}}"></label>
+    <div class="lobia-field-col"><label>{{localize "LOBIA.PokemonMoves.class"}}</label><input type="text" name="system.class" value="{{system.class}}"></div>
+    <div class="lobia-field-col"><label>{{localize "LOBIA.PokemonMoves.damage"}}</label><input type="text" name="system.damage" value="{{system.damage}}"></div>
+    <div class="lobia-field-col"><label>{{localize "LOBIA.PokemonMoves.difficulty"}}</label><input type="text" name="system.difficulty" value="{{system.difficulty}}"></div>
+    <div class="lobia-field-col"><label>{{localize "LOBIA.PokemonMoves.contact"}}</label><input type="text" name="system.contact" value="{{system.contact}}"></div>
+    <div class="lobia-field-col"><label>{{localize "LOBIA.PokemonMoves.description"}}</label><textarea name="system.description" rows="7">{{system.description}}</textarea></div>
+  </div>
+</div>

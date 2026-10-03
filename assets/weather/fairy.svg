@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <defs>
+    <radialGradient id="glow"><stop stop-color="#fff1ff" stop-opacity=".8"/><stop offset="1" stop-color="#f19bff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="wing"><stop stop-color="#fff8ff" stop-opacity=".95"/><stop offset="1" stop-color="#d88cff" stop-opacity=".75"/></linearGradient>
+  </defs>
+  <circle cx="48" cy="48" r="46" fill="url(#glow)"/>
+  <path d="M45 45C25 12 8 23 18 46c4 9 17 10 27 5-20 2-27 20-13 24 10 2 16-12 16-23M51 45c20-33 37-22 27 1-4 9-17 10-27 5 20 2 27 20 13 24-10 2-16-12-16-23" fill="url(#wing)" stroke="#fff7ff" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="48" cy="40" r="6" fill="#fffaff"/>
+  <path d="M44 48q4-4 8 0l-2 18q-2 6-4 0z" fill="#fffaff"/>
+</svg>

@@ -1,0 +1,7 @@
+<section class="tab lobia-sheet-body lobia-notes{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+  {{#if isGM}}
+    <label for="lobia-gm-notes-{{actor.id}}">{{localize "LOBIA.Tabs.gmNotes"}}</label>
+    <textarea id="lobia-gm-notes-{{actor.id}}" rows="14">{{gmNotes}}</textarea>
+    <button type="button" data-action="saveGmNotes">{{localize "LOBIA.Notes.save"}}</button>
+  {{/if}}
+</section>

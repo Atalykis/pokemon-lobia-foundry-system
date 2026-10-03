@@ -1,0 +1,80 @@
+<section class="tab lobia-sheet-body lobia-tree-tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+
+  <div class="lobia-branch-select">
+    <span class="lobia-type-chip lobia-type-normal" data-tooltip="{{localize 'LOBIA.Type.fixed'}}">{{baseTypeLabel}}</span>
+    <span class="lobia-type-plus">+</span>
+    <select class="lobia-type-chip-select lobia-type-{{secondaryType}}" name="system.type.secondary">
+      {{selectOptions typeChoices selected=secondaryType localize=true blank="＋"}}
+    </select>
+    <select class="lobia-type-chip-select lobia-type-{{thirdType}}" name="system.type.third">
+      {{selectOptions typeChoices selected=thirdType localize=true blank="＋"}}
+    </select>
+    <select class="lobia-type-chip-select lobia-type-{{fourthType}}" name="system.type.fourth">
+      {{selectOptions typeChoices selected=fourthType localize=true blank="＋"}}
+    </select>
+  </div>
+
+  <div class="lobia-tree-summary">
+    <div class="lobia-points">
+      <i class="fa-solid fa-star"></i>
+      {{localize "LOBIA.Tree.points"}}: <b>{{skillPoints.remaining}}</b> / {{skillPoints.total}}
+      <span class="muted">({{localize "LOBIA.Tree.spent"}} {{skillPoints.spent}})</span>
+    </div>
+    <div class="lobia-points">
+      <i class="fa-solid fa-graduation-cap"></i>
+      {{localize "LOBIA.Tree.slots"}}: {{skillSteps.slots}} · {{localize "LOBIA.Tree.stepsRemaining"}}: <b>{{skillSteps.remaining}}</b>
+    </div>
+    <button type="button" class="lobia-tree-reset" data-action="resetTree">
+      <i class="fa-solid fa-trash-can"></i> {{localize "LOBIA.Tree.reset"}}
+    </button>
+  </div>
+
+  <div class="lobia-trees">
+    {{#each branchTrees}}
+    <div class="lobia-tree">
+      <h3 class="lobia-tree-title lobia-type-{{this.type}}">{{this.label}}</h3>
+      <div class="lobia-tree-rows">
+        {{#each this.rows}}
+        <div class="lobia-tree-row cells-{{this.length}}">
+          {{#each this}}
+          <div class="lobia-node kind-{{this.kind}} status-{{this.status}}"
+               {{#if this.action}}data-action="{{this.action}}" data-branch="{{this.branch}}" data-node="{{this.id}}" role="button" tabindex="0"{{/if}}
+               data-tooltip="{{this.label}}">
+            <span class="lobia-node-label">{{this.label}}</span>
+          </div>
+          {{/each}}
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+
+  <div class="lobia-skills">
+    <div class="lobia-section-head">
+      <h2>{{localize "LOBIA.Tree.skillsTitle"}}</h2>
+      <span class="lobia-steps-badge">{{localize "LOBIA.Tree.stepsRemaining"}}: <b>{{skillSteps.remaining}}</b></span>
+    </div>
+
+    {{#each skillPanel}}
+    <details class="lobia-skill-branch" open>
+      <summary class="lobia-type-{{this.type}}">{{this.label}}</summary>
+      <div class="lobia-skill-list">
+        {{#each this.skills}}
+        <div class="lobia-skill tier-{{this.tier}}{{#if this.maxed}} maxed{{/if}}">
+          <div class="lobia-skill-head">
+            <span class="lobia-skill-name">{{this.name}}{{#if this.category}} <em class="lobia-skill-cat">{{this.category}}</em>{{/if}}</span>
+            <span class="lobia-skill-tier">
+              <a class="step-down{{#unless this.canLower}} disabled{{/unless}}" data-action="lowerSkill" data-key="{{this.key}}" data-tooltip="{{localize 'LOBIA.Tree.lower'}}"><i class="fa-solid fa-minus"></i></a>
+              <span class="tier-dots">{{this.tier}}/3</span>
+              <a class="step-up{{#unless this.canLevel}} disabled{{/unless}}" data-action="learnSkill" data-key="{{this.key}}" data-tooltip="{{localize 'LOBIA.Tree.learn'}}"><i class="fa-solid fa-plus"></i></a>
+            </span>
+          </div>
+          <div class="lobia-skill-effect">{{this.effect}}</div>
+        </div>
+        {{/each}}
+      </div>
+    </details>
+    {{/each}}
+  </div>
+</section>

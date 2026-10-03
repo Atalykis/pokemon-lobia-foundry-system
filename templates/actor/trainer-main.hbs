@@ -1,0 +1,82 @@
+<section class="tab lobia-sheet-body{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+
+  <div class="lobia-idcard">
+    <div class="lobia-idgroup">
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Identity.prenom"}}</span>
+        <input class="lobia-idvalue" type="text" name="system.identity.prenom" value="{{identity.prenom}}">
+      </div>
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Identity.nom"}}</span>
+        <input class="lobia-idvalue" type="text" name="system.identity.nom" value="{{identity.nom}}">
+      </div>
+    </div>
+
+    <div class="lobia-idbanner">
+      <span>{{localize "LOBIA.Identity.niveau"}}</span>
+        <strong>{{identity.niveau}}</strong>
+        {{#if canLevelDown}}<button type="button" data-action="levelDown" data-tooltip="{{localize 'LOBIA.Level.downHint'}}" aria-label="{{localize 'LOBIA.Level.downHint'}}"><i class="fa-solid fa-minus"></i></button>{{/if}}
+        {{#if canLevelUp}}<button type="button" data-action="levelUp" data-tooltip="{{localize 'LOBIA.Level.hint'}}" aria-label="{{localize 'LOBIA.Level.hint'}}"><i class="fa-solid fa-plus"></i></button>{{/if}}
+    </div>
+    {{#if isGM}}
+    <div class="lobia-idrow">
+      <span class="lobia-idlabel">{{localize "LOBIA.Level.dice"}}</span>
+      <input class="lobia-idvalue" type="text" name="system.levelDice" value="{{system.levelDice}}" placeholder="2D4" data-tooltip="{{localize 'LOBIA.Level.diceHint'}}">
+    </div>
+    {{/if}}
+
+    <div class="lobia-idgroup">
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Identity.age"}}</span>
+        <span class="lobia-idvalue-wrap">
+          <input class="lobia-idvalue" type="number" min="0" name="system.identity.age" value="{{identity.age}}"><em>{{localize "LOBIA.Unit.years"}}</em>
+        </span>
+      </div>
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Identity.taille"}}</span>
+        <span class="lobia-idvalue-wrap">
+          <input class="lobia-idvalue" type="number" min="0" step="any" name="system.identity.taille" value="{{identity.taille}}"><em>cm</em>
+        </span>
+      </div>
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Identity.poids"}}</span>
+        <span class="lobia-idvalue-wrap">
+          <input class="lobia-idvalue" type="number" min="0" step="any" name="system.identity.poids" value="{{identity.poids}}"><em>kg</em>
+        </span>
+      </div>
+    </div>
+
+    <div class="lobia-idgroup">
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Identity.sexe"}}</span>
+        <input class="lobia-idvalue" type="text" name="system.identity.sexe" value="{{identity.sexe}}">
+      </div>
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Identity.attirance"}}</span>
+        <input class="lobia-idvalue" type="text" name="system.identity.attirance" value="{{identity.attirance}}">
+      </div>
+    </div>
+
+    <div class="lobia-idgroup">
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Identity.metier"}}</span>
+        <input class="lobia-idvalue" type="text" name="system.identity.metier" value="{{identity.metier}}">
+      </div>
+    </div>
+
+    <div class="lobia-idgroup">
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Money"}}</span>
+        <span class="lobia-idvalue-wrap">
+          <input class="lobia-idvalue" type="number" min="0" name="system.money" value="{{system.money}}"><em>₽</em>
+        </span>
+      </div>
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Typing.type"}}</span>
+        <span class="lobia-idvalue lobia-idtypes">
+          {{#each mainTypes}}<span class="lobia-eff-chip lobia-type-{{this.key}}">{{this.label}}</span>{{/each}}
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

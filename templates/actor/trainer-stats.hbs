@@ -1,0 +1,60 @@
+<section class="tab lobia-sheet-body{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+
+  {{> lobiaStatBlock}}
+
+  {{> lobiaDerivedBlock}}
+
+  {{#unless isPokemonTemplate}}<section class="lobia-battle-settings" data-accelerator-drop>
+    <div class="lobia-section-head"><h2>{{localize "LOBIA.Accelerator.title"}} ({{acceleratorCount}} / 5)</h2>
+      <span class="lobia-stats-hint">{{localize "LOBIA.Accelerator.dropHint"}}</span></div>
+    {{#each carriedAccelerators}}
+    <div class="lobia-invrow"><span class="lobia-invrow-name">{{this.name}} × {{this.quantity}}</span>
+      {{#if this.canUse}}<button type="button" data-action="useAccelerator" data-item-id="{{this.id}}">{{localize "LOBIA.Accelerator.use"}}</button>{{/if}}
+      {{#if this.canRemove}}<button type="button" data-action="removeUnusedAccelerator" data-item-id="{{this.id}}"
+        data-tooltip="{{localize 'LOBIA.Accelerator.deleteUnused'}}" aria-label="{{localize 'LOBIA.Accelerator.deleteUnused'}}"><i class="fa-solid fa-trash"></i></button>{{/if}}
+    </div>{{/each}}
+    {{#each acceleratorHistory}}
+    <div class="lobia-invrow"><span class="lobia-invrow-name">{{this.name}}{{#if this.detail}} ({{this.detail}}){{/if}}</span>
+      {{#if this.canRemove}}<button type="button" data-action="removeAccelerator" data-accelerator-id="{{this.id}}"
+        data-tooltip="{{localize 'LOBIA.Accelerator.remove'}}" aria-label="{{localize 'LOBIA.Accelerator.remove'}}"><i class="fa-solid fa-trash"></i></button>{{/if}}
+    </div>{{/each}}
+  </section>{{/unless}}
+
+  <section class="lobia-battle-settings">
+    <div class="lobia-section-head">
+      <h2>{{localize "LOBIA.Battle.resources"}}</h2>
+      <span class="lobia-stats-hint">{{localize "LOBIA.Battle.baseHint"}}</span>
+    </div>
+
+    <div class="lobia-statcards lobia-derived-grid">
+      {{#each combatResources}}
+      <div class="lobia-statcard"{{#if this.tooltip}} data-tooltip-html="{{this.tooltip}}"{{/if}}>
+        <span class="lobia-statcard-name is-static">
+          <i class="fa-solid {{this.icon}}"></i><span>{{this.label}}</span>
+        </span>
+
+        <div class="lobia-statcard-row">
+          <div class="lobia-statcell">
+            <span class="lobia-statcell-label">{{localize "LOBIA.StatCol.base"}}</span>
+            <input type="number" min="0" step="1" name="{{this.basePath}}" value="{{this.base}}">
+          </div>
+
+          <span class="lobia-statop">+</span>
+
+          <div class="lobia-statcell">
+            <span class="lobia-statcell-label">{{localize "LOBIA.Battle.bonus"}}</span>
+            <span class="lobia-derived-base{{#if this.hasBonus}} has-bonus{{/if}}">{{this.bonus}}</span>
+          </div>
+
+          <span class="lobia-statop">=</span>
+
+          <div class="lobia-statcell lobia-statcell-total">
+            <span class="lobia-statcell-label">{{localize "LOBIA.StatCol.total"}}</span>
+            <span class="lobia-stat-total">{{this.total}}</span>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </section>
+</section>

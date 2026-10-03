@@ -1,0 +1,67 @@
+{
+  "id": "lobia",
+  "title": "Pokémon Lobia",
+  "description": "Système TTRPG maison (d100) pour l'univers Pokémon Lobia.",
+  "version": "0.1.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13.351"
+  },
+  "authors": [
+    {
+      "name": "Atalykis"
+    }
+  ],
+  "esmodules": [
+    "module/lobia.mjs"
+  ],
+  "styles": [
+    "styles/lobia.css"
+  ],
+  "languages": [
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    },
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "packs": [
+    {
+      "name": "pokemons",
+      "label": "Pokémons",
+      "type": "Actor",
+      "path": "packs/pokemons",
+      "system": "lobia",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    }
+  ],
+  "documentTypes": {
+    "Actor": {
+      "trainer": {},
+      "pokemon": {}
+    },
+    "Item": {
+      "objet": {},
+      "competence": {},
+      "capacite": {},
+      "arbre": {},
+      "arbreDominant": {},
+      "nature": {},
+      "talent": {}
+    }
+  },
+  "grid": {
+    "distance": 1,
+    "units": "m"
+  },
+  "primaryTokenAttribute": "hp",
+  "background": ""
+}

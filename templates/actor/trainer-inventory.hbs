@@ -1,0 +1,124 @@
+<section class="tab lobia-sheet-body lobia-inv-tab{{#if tab.active}} active{{/if}}"
+         data-group="{{tab.group}}" data-tab="{{tab.id}}">
+
+  {{! ---- The 3 weapon slots, each with its accessory ---- }}
+  <div class="lobia-weapons">
+    {{#each weaponSlots}}
+    <div class="lobia-weapon-row">
+      <span class="lobia-weapon-index">{{this.index}}</span>
+
+      <div class="lobia-weapon-pair">
+        {{#with this.weapon}}
+        <div class="lobia-slot filled draggable" data-drop-category="arme" data-drop-slot="{{../slot}}"
+             data-item-id="{{this.id}}" data-tooltip-html="{{this.tooltip}}" data-tooltip-class="lobia-item-tooltip" draggable="true">
+          <img src="{{this.img}}" alt="{{this.name}}">
+          <a class="lobia-slot-name" data-action="openItem" data-item-id="{{this.id}}">{{this.name}}</a>
+          <a class="lobia-slot-del" data-action="deleteItem" data-item-id="{{this.id}}"
+             data-tooltip="{{localize 'LOBIA.Item.remove'}}"><i class="fa-solid fa-xmark"></i></a>
+        </div>
+        {{else}}
+        <a class="lobia-slot empty" data-drop-category="arme" data-drop-slot="{{this.slot}}"
+           data-action="openItemCompendium" data-tooltip="{{localize 'LOBIA.Item.dropHint'}}">
+           <i class="fa-solid fa-plus"></i> {{../weaponSlotLabels.arme}}
+        </a>
+        {{/with}}
+
+        {{#with this.accessory}}
+        <div class="lobia-slot filled accessory draggable" data-drop-category="accessoire"
+             data-drop-slot="{{../slot}}" data-item-id="{{this.id}}"
+              data-tooltip-html="{{this.tooltip}}" data-tooltip-class="lobia-item-tooltip" draggable="true">
+          <img src="{{this.img}}" alt="{{this.name}}">
+          <a class="lobia-slot-name" data-action="openItem" data-item-id="{{this.id}}">{{this.name}}</a>
+          <a class="lobia-slot-del" data-action="deleteItem" data-item-id="{{this.id}}"
+             data-tooltip="{{localize 'LOBIA.Item.remove'}}"><i class="fa-solid fa-xmark"></i></a>
+        </div>
+        {{else}}
+        <a class="lobia-slot empty accessory" data-drop-category="accessoire" data-drop-slot="{{this.slot}}"
+           data-action="openItemCompendium" data-tooltip="{{localize 'LOBIA.Item.dropHint'}}">
+           <i class="fa-solid fa-plus"></i> {{../weaponSlotLabels.accessoire}}
+        </a>
+        {{/with}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+
+  {{#if reserve}}
+  <div class="lobia-reserve" data-tooltip="{{localize 'LOBIA.Item.reserveHint'}}">
+    <span class="lobia-reserve-label">{{localize "LOBIA.Item.reserve"}}</span>
+    {{#each reserve}}
+    <span class="lobia-reserve-chip draggable" data-item-id="{{this.id}}"
+           data-tooltip-html="{{this.tooltip}}" data-tooltip-class="lobia-item-tooltip" draggable="true">
+      <a data-action="openItem" data-item-id="{{this.id}}">{{this.name}}</a>
+      <a class="lobia-invrow-del" data-action="deleteItem" data-item-id="{{this.id}}"><i class="fa-solid fa-xmark"></i></a>
+    </span>
+    {{/each}}
+  </div>
+  {{/if}}
+
+  {{! ---- The uncapped buckets ---- }}
+  <div class="lobia-buckets">
+    {{#if canCreateItemCategory}}
+    <button type="button" data-action="createItemCategory" class="lobia-create-category">
+      <i class="fa-solid fa-plus"></i> {{localize "LOBIA.Item.createCategory"}}
+    </button>
+    <button type="button" data-action="editItemCategory" class="lobia-create-category">
+      <i class="fa-solid fa-pen"></i> {{localize "LOBIA.Item.editCategory"}}
+    </button>
+    {{/if}}
+    {{#each buckets}}
+    <section class="lobia-bucket lobia-cat-{{this.key}}" data-drop-category="{{this.key}}">
+      <header class="lobia-bucket-head">
+        <i class="fa-solid {{this.icon}}"></i>
+        <span class="lobia-bucket-label">{{this.label}}</span>
+        <span class="lobia-bucket-count">{{this.count}}</span>
+        {{#if this.canEdit}}
+        <a class="lobia-bucket-add" data-action="editItemCategory" data-category="{{this.key}}"
+           data-tooltip="{{localize 'LOBIA.Item.editCategory'}}"><i class="fa-solid fa-pen"></i></a>
+        {{/if}}
+        {{#if this.canDelete}}
+        <a class="lobia-bucket-delete" data-action="deleteItemCategory" data-category="{{this.key}}"
+           data-tooltip="{{localize 'LOBIA.Item.deleteCategory'}}"><i class="fa-solid fa-trash"></i></a>
+        {{/if}}
+        <a class="lobia-bucket-add" data-action="openItemCompendium" data-drop-category="{{this.key}}"
+           data-tooltip="{{localize 'LOBIA.Item.openCompendium'}}"><i class="fa-solid fa-plus"></i></a>
+      </header>
+
+      <div class="lobia-bucket-body">
+        {{#each this.groups}}
+        <div class="lobia-subgroup">
+          <span class="lobia-subgroup-label">{{this.label}}</span>
+          {{#each this.items}}
+          <div class="lobia-invrow draggable" data-item-id="{{this.id}}"
+                data-tooltip-html="{{this.tooltip}}" data-tooltip-class="lobia-item-tooltip" draggable="true">
+            <img src="{{this.img}}" alt="{{this.name}}">
+            <a class="lobia-invrow-name" data-action="openItem" data-item-id="{{this.id}}">{{this.name}}</a>
+            <span class="lobia-invrow-qty">
+              <a data-action="adjustQuantity" data-item-id="{{this.id}}" data-delta="-1">−</a>
+              <b>{{this.quantity}}</b>
+              <a data-action="adjustQuantity" data-item-id="{{this.id}}" data-delta="1">+</a>
+            </span>
+            <a class="lobia-invrow-del" data-action="deleteItem" data-item-id="{{this.id}}"
+               data-tooltip="{{localize 'LOBIA.Item.remove'}}"><i class="fa-solid fa-xmark"></i></a>
+          </div>
+          {{/each}}
+        </div>
+        {{else}}
+        <p class="lobia-bucket-empty">{{localize "LOBIA.Item.dropHere"}}</p>
+        {{/each}}
+      </div>
+    </section>
+    {{/each}}
+
+    <section class="lobia-bucket lobia-cat-autre">
+      <header class="lobia-bucket-head">
+        <i class="fa-solid fa-feather-pointed"></i>
+        <span class="lobia-bucket-label">{{localize "LOBIA.Item.autres"}}</span>
+      </header>
+      <div class="lobia-bucket-body">
+        <textarea class="lobia-inv-notes" name="system.inventory.autres" rows="3"
+                  placeholder="{{localize 'LOBIA.Item.autresHint'}}">{{inventoryNotes}}</textarea>
+      </div>
+    </section>
+  </div>
+</section>

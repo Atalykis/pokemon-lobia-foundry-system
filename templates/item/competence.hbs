@@ -1,0 +1,38 @@
+{{! One trainer skill. ApplicationV2 requires a single root element per part. }}
+<div class="lobia-item-part">
+<header class="lobia-header">
+  <img class="lobia-portrait" src="{{item.img}}" data-edit="img" data-action="editImage" alt="{{item.name}}">
+  <div class="lobia-header-fields">
+    <input class="lobia-name" type="text" name="name" value="{{item.name}}" placeholder="{{localize 'LOBIA.Name'}}">
+    <div class="lobia-skill-meta">
+      <select class="lobia-type-chip-select lobia-type-{{system.type}}" name="system.type">
+        {{selectOptions typeChoices selected=system.type localize=true}}
+      </select>
+      <select name="system.category">
+        {{selectOptions categoryChoices selected=system.category blank=""}}
+      </select>
+    </div>
+  </div>
+</header>
+
+<div class="lobia-sheet-body">
+  <label class="lobia-skill-key">
+    <span>{{localize "LOBIA.Skill.key"}}</span>
+    <input type="text" name="system.key" value="{{system.key}}"
+           data-tooltip="{{localize 'LOBIA.Skill.keyHint'}}">
+  </label>
+
+  <div class="lobia-field-col">
+    <label>{{localize "LOBIA.Skill.tier1"}}</label>
+    <textarea name="system.tiers.1" rows="4">{{system.tiers.[1]}}</textarea>
+  </div>
+  <div class="lobia-field-col">
+    <label>{{localize "LOBIA.Skill.tier2"}}</label>
+    <textarea name="system.tiers.2" rows="4">{{system.tiers.[2]}}</textarea>
+  </div>
+  <div class="lobia-field-col">
+    <label>{{localize "LOBIA.Skill.tier3"}}</label>
+    <textarea name="system.tiers.3" rows="4">{{system.tiers.[3]}}</textarea>
+  </div>
+</div>
+</div>

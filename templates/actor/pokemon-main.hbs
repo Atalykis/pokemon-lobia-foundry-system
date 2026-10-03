@@ -1,0 +1,109 @@
+<section class="tab lobia-sheet-body{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+  <div class="lobia-idcard">
+    <div class="lobia-idgroup">
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Pokemon.species"}}</span>
+        {{#if isGM}}<input class="lobia-idvalue" type="text" name="system.species.name" value="{{system.species.name}}">{{else}}<span class="lobia-idvalue">{{system.species.name}}</span>{{/if}}
+      </div>
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Pokemon.nickname"}}</span>
+        <input class="lobia-idvalue" type="text" name="system.identity.nickname" value="{{actor.name}}">
+      </div>
+    </div>
+
+    <div class="lobia-idbanner">
+      <span>{{localize "LOBIA.Identity.niveau"}}</span>
+        <strong>{{pokemonIdentity.level}}</strong>
+        {{#if canLevelDown}}<button type="button" data-action="levelDown" data-tooltip="{{localize 'LOBIA.Level.downHint'}}" aria-label="{{localize 'LOBIA.Level.downHint'}}"><i class="fa-solid fa-minus"></i></button>{{/if}}
+        {{#if canLevelUp}}<button type="button" data-action="levelUp" data-tooltip="{{localize 'LOBIA.Level.hint'}}" aria-label="{{localize 'LOBIA.Level.hint'}}"><i class="fa-solid fa-plus"></i></button>{{/if}}
+    </div>
+
+    <div class="lobia-idgroup">
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Identity.sexe"}}</span>
+        <select class="lobia-idvalue-select" name="system.identity.sex">
+          {{selectOptions pokemonSexChoices selected=pokemonIdentity.sex localize=true blank="—"}}
+        </select>
+      </div>
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Pokemon.nature"}}</span>
+        <span class="lobia-idvalue-wrap">
+          {{#if isGM}}<select class="lobia-idvalue-select" name="system.identity.nature">
+            {{selectOptions natureChoices selected=pokemonIdentity.nature localize=true blank="—"}}
+          </select>{{else}}<span class="lobia-idvalue">{{#if pokemonNatureName}}{{pokemonNatureName}}{{else}}—{{/if}}</span>{{/if}}
+          {{#if canRollPokemonNature}}<button type="button" class="lobia-idroll" data-action="rollNature" data-tooltip="{{localize 'LOBIA.Pokemon.rollNature'}}"><i class="fa-solid fa-dice-d20"></i></button>{{/if}}
+        </span>
+      </div>
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Pokemon.shiny"}}</span>
+        <span class="lobia-idvalue-wrap">
+          <label class="lobia-idvalue-check"><input type="checkbox" {{#if isGM}}name="system.identity.shiny"{{else}}disabled{{/if}} {{checked pokemonIdentity.shiny}}></label>
+          {{#if canRollPokemonShiny}}<button type="button" class="lobia-idroll" data-action="rollShiny" data-tooltip="{{localize 'LOBIA.Pokemon.rollShiny'}}"><i class="fa-solid fa-dice-d20"></i></button>{{/if}}
+        </span>
+      </div>
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Pokemon.dominant"}}</span>
+        <label class="lobia-idvalue-check" data-tooltip="{{localize 'LOBIA.Pokemon.dominantHint'}}"><input type="checkbox" {{#if isGM}}name="system.identity.dominant"{{else}}disabled{{/if}} {{checked pokemonIdentity.dominant}}></label>
+      </div>
+    </div>
+
+    <div class="lobia-idgroup">
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Identity.taille"}}</span>
+        <span class="lobia-idvalue-wrap">{{#if isGM}}<input class="lobia-idvalue" type="number" min="0" step="any" name="system.identity.size" value="{{pokemonIdentity.size}}">{{else}}<span class="lobia-idvalue">{{pokemonIdentity.size}}</span>{{/if}}<em>cm</em></span>
+      </div>
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Identity.poids"}}</span>
+        <span class="lobia-idvalue-wrap">{{#if isGM}}<input class="lobia-idvalue" type="number" min="0" step="any" name="system.identity.weight" value="{{pokemonIdentity.weight}}">{{else}}<span class="lobia-idvalue">{{pokemonIdentity.weight}}</span>{{/if}}<em>kg</em></span>
+      </div>
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Pokemon.averageSize"}}</span>
+        <span class="lobia-idvalue-wrap">{{#if canEditSpeciesAverages}}<input class="lobia-idvalue" type="number" min="0" step="any" name="system.identity.averageSize" value="{{pokemonIdentity.averageSize}}">{{else}}<span class="lobia-idvalue">{{pokemonIdentity.averageSize}}</span>{{/if}}<em>cm</em></span>
+      </div>
+      <div class="lobia-idrow">
+        <span class="lobia-idlabel">{{localize "LOBIA.Pokemon.averageWeight"}}</span>
+        <span class="lobia-idvalue-wrap">{{#if canEditSpeciesAverages}}<input class="lobia-idvalue" type="number" min="0" step="any" name="system.identity.averageWeight" value="{{pokemonIdentity.averageWeight}}">{{else}}<span class="lobia-idvalue">{{pokemonIdentity.averageWeight}}</span>{{/if}}<em>kg</em></span>
+      </div>
+    </div>
+    {{#if isGM}}
+    <div class="lobia-idrow">
+      <span class="lobia-idlabel">{{localize "LOBIA.PokemonTree.hpFormulaLabel"}}</span>
+      <input class="lobia-idvalue" type="text" name="system.species.hpFormula" value="{{system.species.hpFormula}}" placeholder="3D4" data-tooltip="{{localize 'LOBIA.PokemonTree.hpFormulaHint'}}">
+    </div>
+    {{/if}}
+    {{#if canRollPokemonMeasurements}}<button type="button" class="lobia-id-action" data-action="rollMeasurements" data-tooltip="{{localize 'LOBIA.Pokemon.measurementsHint'}}">
+      <i class="fa-solid fa-dice-d20"></i> {{localize "LOBIA.Pokemon.rollMeasurements"}}
+    </button>{{/if}}
+
+    {{#if canManagePokemonTalents}}{{#if isPokemonTemplate}}
+    <button type="button" class="lobia-id-action" data-action="editPokemonTalents"><i class="fa-solid fa-pen"></i> {{#if editPokemonTalents}}{{localize "LOBIA.Pokemon.doneTalents"}}{{else}}{{localize "LOBIA.Pokemon.editTalents"}}{{/if}}</button>
+    {{/if}}{{/if}}
+    {{#if editPokemonTalents}}
+    <fieldset class="lobia-talent-choices">
+      <legend>{{localize "LOBIA.Pokemon.availableTalents"}}</legend>
+      {{#each talentSlots}}
+      <label class="lobia-talent-slot">{{this.label}}
+        <select name="system.talents.{{this.slot}}">{{selectOptions ../talentChoices selected=this.selected blank="—"}}</select>
+      </label>
+      {{/each}}
+    </fieldset>
+    {{/if}}
+    <fieldset class="lobia-talent-choices">
+      <legend>{{localize "LOBIA.Pokemon.activeTalent"}}</legend>
+      {{#each talentOptions}}
+      <label class="lobia-talent-choice{{#if selected}} active{{/if}}">
+        <input type="radio" name="system.talents.selected" value="{{slot}}" {{checked selected}}>
+        <span class="lobia-talent-choice-text"><small>{{slotLabel}}</small><strong>{{name}}</strong></span>
+      </label>
+      {{else}}
+      <p class="lobia-talent-empty">{{localize "LOBIA.Pokemon.noTalents"}}</p>
+      {{/each}}
+    </fieldset>
+    {{#if selectedTalent}}
+    <div class="lobia-talent-effect">
+      <strong>{{selectedTalent.name}}</strong>
+      {{#if selectedTalent.effect}}<p>{{selectedTalent.effect}}</p>{{/if}}
+    </div>
+    {{/if}}
+  </div>
+</section>

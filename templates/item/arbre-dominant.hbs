@@ -1,0 +1,25 @@
+<div class="lobia-item-part">
+  <header class="lobia-header">
+    <div class="lobia-header-fields">
+      <input class="lobia-name" type="text" name="name" value="{{item.name}}" placeholder="{{localize 'LOBIA.Name'}}">
+      <select class="lobia-type-chip-select lobia-type-{{system.type}}" name="system.type">
+        {{selectOptions typeChoices selected=system.type localize=true}}
+      </select>
+    </div>
+  </header>
+  <div class="lobia-sheet-body">
+    <p class="lobia-arbre-hint">{{localize "LOBIA.PokemonTree.dominantEditHint"}}</p>
+    <div class="lobia-arbre-rows lobia-dominant-editor">
+      {{#each rows}}
+      <div class="lobia-arbre-row cells-{{this.length}}">
+        {{#each this}}
+        <div class="lobia-dominant-edit-cell">
+          <input type="text" name="system.labels.{{this.id}}" value="{{this.label}}" aria-label="{{this.id}}">
+          <textarea name="system.notes.{{this.id}}" rows="2" placeholder="{{localize 'LOBIA.PokemonTree.nodeNote'}}" aria-label="{{localize 'LOBIA.PokemonTree.nodeNote'}}">{{this.note}}</textarea>
+        </div>
+        {{/each}}
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

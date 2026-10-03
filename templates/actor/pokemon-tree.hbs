@@ -1,0 +1,118 @@
+<section class="tab lobia-sheet-body lobia-tree-tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+  <div class="lobia-tree-summary">
+    <div class="lobia-points"><i class="fa-solid fa-star"></i>
+      {{localize "LOBIA.Tree.points"}}: <b>{{pokemonTreePoints.remaining}}</b> / {{pokemonTreePoints.total}}
+      <span class="muted">({{localize "LOBIA.Tree.spent"}} {{pokemonTreePoints.spent}})</span>
+    </div>
+    {{#if canEditPokemonBranches}}
+    <button type="button" class="lobia-tree-tool" data-action="addPokemonBranch"><i class="fa-solid fa-plus"></i> {{localize "LOBIA.PokemonTree.addBranch"}}</button>
+    <button type="button" class="lobia-tree-tool" data-action="editPokemonBranches"><i class="fa-solid fa-pen"></i> {{#if editPokemonBranches}}{{localize "LOBIA.PokemonTree.doneEditing"}}{{else}}{{localize "LOBIA.PokemonTree.editBranches"}}{{/if}}</button>
+    {{/if}}
+    {{#unless isPokemonTemplate}}<button type="button" class="lobia-tree-reset" data-action="resetPokemonTree">
+      <i class="fa-solid fa-trash-can"></i> {{localize "LOBIA.Tree.reset"}}
+    </button>{{/unless}}
+  </div>
+  {{#if divisionMembers}}
+  <div class="lobia-ct-panel">
+    <div class="lobia-section-head"><h2>{{localize "LOBIA.Divighost.title"}}</h2>
+      <span class="lobia-stats-hint">{{localize "LOBIA.Divighost.hint"}}</span></div>
+    <div class="lobia-division-members">
+      {{#each divisionMembers}}
+      <label>{{localize "LOBIA.Divighost.member"}} {{this.number}}
+        {{#if this.image}}<img class="lobia-division-portrait" src="{{this.image}}" alt="">{{/if}}
+        <select name="system.divisionMembers.{{this.slot}}" {{#if ../isPokemonTemplate}}disabled{{/if}}>
+          {{selectOptions ../divisionRoleChoices selected=this.role blank="—"}}
+        </select>
+      </label>
+      {{/each}}
+    </div>
+  </div>
+  {{/if}}
+  <div class="lobia-ct-panel">
+    <div class="lobia-section-head"><h2>{{localize "LOBIA.CT.title"}}</h2>
+      <span class="lobia-stats-hint">{{localize "LOBIA.CT.rpHint"}}</span></div>
+    <div class="lobia-ct-slots">
+      {{#each ctSlots}}
+      <div class="lobia-ct-slot{{#if this.moveName}} lobia-ct-learned{{/if}}"
+           {{#if this.moveTooltip}}data-tooltip-html="{{this.moveTooltip}}" data-tooltip-class="lobia-move-tooltip"{{/if}}>
+        <span class="lobia-ct-branch">{{localize "LOBIA.CT.tree"}} {{this.number}}{{#if this.name}} · {{this.name}}{{/if}}</span>
+        <strong>{{#if this.moveName}}{{this.moveName}}{{else}}{{localize "LOBIA.CT.empty"}}{{/if}}</strong>
+        {{#if this.canEdit}}<button type="button" data-action="chooseCtMove" data-branch="{{this.branch}}"
+          data-tooltip="{{localize 'LOBIA.CT.choose'}}"><i class="fa-solid fa-compact-disc"></i>
+          {{localize "LOBIA.CT.choose"}}</button>{{/if}}
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  {{#if dominantTypeChoices.length}}
+  <div class="lobia-dominant-choice">
+    <label for="lobia-dominant-type">{{localize "LOBIA.PokemonTree.dominantType"}}</label>
+    {{#if dominantTypeLocked}}
+    <strong>{{#each dominantTypeChoices}}{{#if this.selected}}{{this.name}}{{/if}}{{/each}}</strong>
+    {{else}}
+    <select id="lobia-dominant-type" name="system.dominantType" {{#if isPokemonTemplate}}disabled{{/if}}>
+      {{#if dominantTypePending}}<option value="" selected>{{localize "LOBIA.PokemonTree.chooseType"}}</option>{{/if}}
+      {{#each dominantTypeChoices}}<option value="{{this.key}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>{{/each}}
+    </select>
+    {{/if}}
+  </div>
+  {{/if}}
+  {{#if editPokemonBranches}}<p class="lobia-tree-note">{{localize "LOBIA.PokemonTree.editHint"}}</p>{{/if}}
+  <div class="lobia-trees">
+    {{#each pokemonBranches}}
+    <div class="lobia-tree{{#if this.future}} lobia-tree-future{{/if}}">
+      {{#if this.custom}}
+      {{#if ../editPokemonBranches}}
+      <div class="lobia-custom-tree-heading">
+        <input type="text" name="system.customPokemonBranches.{{this.id}}.title" value="{{this.title}}" placeholder="{{localize 'LOBIA.PokemonTree.branchName'}}" aria-label="{{localize 'LOBIA.PokemonTree.branchName'}}">
+        <button type="button" data-action="deletePokemonBranch" data-branch="{{this.id}}" data-tooltip="{{localize 'LOBIA.PokemonTree.deleteBranch'}}"><i class="fa-solid fa-trash-can"></i></button>
+      </div>
+      <div class="lobia-custom-tree-condition">
+        <label>{{localize "LOBIA.PokemonTree.condition"}}
+          <select name="system.customPokemonBranches.{{this.id}}.conditionType">
+            <option value="" {{#if this.conditionNone}}selected{{/if}}>{{localize "LOBIA.PokemonTree.noCondition"}}</option>
+            <option value="level" {{#if this.conditionIsLevel}}selected{{/if}}>{{localize "LOBIA.PokemonTree.conditionLevel"}}</option>
+            <option value="evolution" {{#if this.conditionIsEvolution}}selected{{/if}}>{{localize "LOBIA.PokemonTree.conditionEvolution"}}</option>
+          </select>
+        </label>
+        {{#if this.conditionIsLevel}}<label>{{localize "LOBIA.PokemonTree.requiredLevel"}}
+          <input type="number" min="1" max="20" step="1" name="system.customPokemonBranches.{{this.id}}.conditionLevel" value="{{this.conditionLevel}}">
+        </label>{{/if}}
+        {{#if this.conditionIsEvolution}}<label>{{localize "LOBIA.PokemonTree.requiredSpecies"}}
+          <input type="text" name="system.customPokemonBranches.{{this.id}}.conditionSpecies" value="{{this.conditionSpecies}}" placeholder="{{localize 'LOBIA.Pokemon.species'}}">
+        </label>{{/if}}
+      </div>
+      {{/if}}
+      {{/if}}
+      {{#if this.divisionRole}}<div class="lobia-custom-tree-heading">{{#if this.divisionImage}}<img class="lobia-division-tree-portrait" src="{{this.divisionImage}}" alt="">{{/if}}<strong>{{this.title}}{{#if this.divisionSelected}} <i class="fa-solid fa-check"></i>{{/if}}</strong></div>{{/if}}
+      {{#if this.dominant}}<div class="lobia-custom-tree-heading"><strong>{{localize "LOBIA.PokemonTree.dominantTree"}} — {{this.dominantName}}</strong></div>{{/if}}
+      {{#if this.future}}<p class="lobia-tree-note">{{this.unlockHint}}</p>{{/if}}
+      {{#if this.placeholder}}<p class="lobia-tree-note">{{localize "LOBIA.PokemonTree.awaitingData"}}</p>{{/if}}
+      <div class="lobia-tree-rows">
+        {{#each this.rows}}
+        <div class="lobia-tree-row cells-{{this.length}}">
+          {{#each this}}
+           <div class="lobia-node kind-{{this.kind}} status-{{this.status}}{{#if this.restricted}} lobia-node-restricted{{/if}}{{#if this.ppMaxUnlocked}} lobia-node-pp-max{{/if}}"
+               {{#if this.action}}data-action="{{this.action}}" data-branch="{{this.branch}}" data-node="{{this.id}}" role="button" tabindex="0"{{/if}}
+                {{#if this.moveTooltip}}data-tooltip-html="{{this.moveTooltip}}" data-tooltip-class="lobia-move-tooltip"{{else}}data-tooltip="{{this.tooltip}}"{{/if}}>
+             {{#if ../../../editPokemonBranches}}{{#if ../../custom}}
+             <input class="lobia-node-edit" type="text" name="system.customPokemonBranches.{{this.branch}}.labels.{{this.id}}" value="{{this.rawLabel}}" placeholder="—" aria-label="{{localize 'LOBIA.PokemonTree.nodeLabel'}}">
+             {{else}}<span class="lobia-node-label">{{this.label}}</span>{{/if}}
+              {{else}}<span class="lobia-node-label">{{this.label}}</span>{{/if}}
+             {{#if this.ppMaxUnlocked}}<span class="lobia-node-hp">PP Max</span>{{/if}}
+            {{#if this.hpRoll}}<span class="lobia-node-hp">+{{this.hpRoll}} PV</span>{{/if}}
+            {{#if this.hpSaved}}<span class="lobia-node-hp lobia-node-hp-saved" data-tooltip="{{localize 'LOBIA.PokemonTree.savedHint'}}">+{{this.hpSaved}} PV <i class="fa-solid fa-floppy-disk"></i></span>{{/if}}
+            {{#if this.hpRollMissing}}<button type="button" class="lobia-node-hp-roll" data-action="rollPokemonHpBonus"
+              data-branch="{{this.branch}}" data-node="{{this.id}}" data-tooltip="{{localize 'LOBIA.PokemonTree.rollExistingHp'}}">
+              <i class="fa-solid fa-dice"></i>
+            </button>{{/if}}
+          </div>
+          {{/each}}
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <p class="lobia-tree-note">{{localize "LOBIA.PokemonTree.movesHint"}}</p>
+</section>

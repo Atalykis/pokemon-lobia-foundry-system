@@ -1,0 +1,1477 @@
+/* ---------------------------------- */
+/*  Pokémon Lobia — system styles     */
+/* ---------------------------------- */
+
+.lobia.sheet .window-content {
+  padding: 0.5rem;
+  overflow-y: auto;
+}
+
+/* Header */
+.lobia-header {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+.lobia-portrait {
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border: 1px solid var(--color-border-dark, #666);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.lobia-header-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+}
+.lobia-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.lobia-hp {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.lobia-hp input { width: 3.5rem; text-align: center; }
+.lobia-hp .sep { opacity: 0.6; }
+
+/* Sections */
+.lobia-sheet-body h2 {
+  font-size: 1rem;
+  margin: 0.5rem 0 0.35rem;
+  border-bottom: 2px solid var(--color-border-dark, #888);
+  padding-bottom: 0.15rem;
+}
+
+/* ============ Shared actor header ============ */
+.lobia-hd {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.55rem 0.7rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--color-border-dark, #888);
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(140,150,170,0.12), rgba(90,100,120,0.06));
+}
+.lobia-hd-name {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  padding: 0 0.2rem;
+}
+input.lobia-hd-name:hover, input.lobia-hd-name:focus { background: rgba(0,0,0,0.05); border-radius: 6px; outline: none; }
+
+.lobia-hd-body { display: flex; gap: 0.7rem; align-items: flex-start; }
+.lobia-hd-stats {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+.lobia-hd-portrait {
+  flex: 0 0 92px;
+  width: 92px;
+  height: 92px;
+  object-fit: cover;
+  border: 2px solid var(--color-border-dark, #666);
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Stat pills */
+.lobia-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  min-width: 4.6rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--color-border-light, #bbb);
+  border-radius: 8px;
+}
+.lobia-pill-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+}
+.lobia-pill-vals { display: flex; align-items: center; gap: 0.15rem; font-weight: 700; }
+.lobia-pill-vals input {
+  width: 2.4rem;
+  height: 1.6rem;
+  text-align: center;
+  font-weight: 700;
+  border: none;
+  background: rgba(0,0,0,0.05);
+  border-radius: 4px;
+}
+.lobia-pill-vals input:focus { background: rgba(0,0,0,0.1); outline: none; }
+.lobia-pill-vals .sep { opacity: 0.5; }
+.lobia-pill-total { min-width: 1.4rem; text-align: center; font-weight: 800; }
+.lobia-pill-hp { background: rgba(200,60,60,0.12); border-color: rgba(200,60,60,0.4); }
+.lobia-pill-reset {
+  align-self: center;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.lobia-pill-reset:hover { opacity: 1; text-shadow: 0 0 6px var(--color-shadow-primary, #ff6400); }
+
+.lobia-hd-types {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-top: 0.45rem;
+  border-top: 1px dashed var(--color-border-light, #bbb);
+}
+.lobia-hd-combat-style { display: flex; align-items: center; flex-wrap: wrap; gap: 0.35rem 0.65rem; }
+.lobia-hd-combat-style label { font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
+.lobia-hd-combat-style select { flex: 0 1 14rem; min-width: 10rem; }
+.lobia-hd-style-hint { flex: 1 1 16rem; font-size: 0.72rem; opacity: 0.8; }
+.lobia-status-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.6rem;
+  padding-top: 0.45rem;
+  border-top: 1px dashed var(--color-border-light, #bbb);
+}
+.lobia-status-heading { font-size: 0.8rem; }
+.lobia-status-empty { font-size: 0.75rem; opacity: 0.7; }
+.lobia-status-list, .lobia-status-add { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; }
+.lobia-status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.12rem 0.35rem;
+  border: 1px solid var(--color-border-light, #bbb);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.75rem;
+}
+.lobia-status-chip img { width: 1.15rem; height: 1.15rem; }
+.lobia-status-controls { display: inline-flex; gap: 0.1rem; }
+.lobia-status-controls button { width: 1.35rem; min-height: 1.35rem; padding: 0; font-size: 0.85rem; }
+.lobia-status-add select { width: auto; max-width: 12rem; min-width: 4.5rem; height: 1.8rem; }
+.lobia-status-add button { width: auto; min-height: 1.8rem; padding: 0 0.45rem; }
+.lobia-hd-types-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.lobia-hd-types .lobia-type-chip-select { flex: 0 1 10rem; }
+.lobia-pokemon-inventory { padding-top: 0.45rem; border-top: 1px dashed var(--color-border-light, #bbb); }
+.lobia-pokemon-inventory-heading { display: flex; align-items: center; justify-content: space-between; gap: 0.4rem; margin-bottom: 0.3rem; font-size: 0.8rem; }
+.lobia-pokemon-inventory-heading button { width: auto; min-height: 1.5rem; padding: 0 0.4rem; font-size: 0.72rem; }
+.lobia-pokemon-inventory-slots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.4rem; }
+.lobia-pokemon-item-slot { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; padding: 0.35rem; border: 1px dashed var(--color-border-light, #bbb); border-radius: 7px; background: rgba(255,255,255,0.04); }
+.lobia-pokemon-item-slot:hover { border-color: var(--color-border-dark, #777); }
+.lobia-pokemon-item-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; }
+.lobia-pokemon-item { display: flex; align-items: center; gap: 0.3rem; min-width: 0; }
+.lobia-pokemon-item img { width: 1.5rem; height: 1.5rem; object-fit: contain; }
+.lobia-pokemon-item-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: left; border: 0; background: none; padding: 0; }
+.lobia-pokemon-item-remove { flex: none; width: 1.35rem; min-height: 1.35rem; padding: 0; }
+.lobia-pokemon-item-empty { font-size: 0.73rem; opacity: 0.65; }
+
+/* Header typing rows */
+.lobia-hd-typing {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-top: 0.4rem;
+  border-top: 1px dashed var(--color-border-light, #bbb);
+}
+.lobia-hd-typerow { display: flex; align-items: center; gap: 0.4rem; }
+.lobia-hd-typelabel {
+  flex: 0 0 5.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.lobia-hd-typelabel.weak { color: #b3402f; }
+.lobia-hd-typelabel.resist { color: #2e7d32; }
+.lobia-hd-typelabel.immune { color: #666; }
+
+/* Chip-style type selectors (skill-tree tab) */
+.lobia-branch-select {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+.lobia-type-chip-select {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 4rem;
+  text-align: center;
+  text-align-last: center;
+  padding: 0.1rem 0.7rem;
+  line-height: 1.35;
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #fff;
+  cursor: pointer;
+  background: var(--lobia-type-color, #aab0ba);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+  height: auto;
+}
+.lobia-type-chip-select:hover { filter: brightness(1.08); }
+/* Empty (no type chosen): dashed neutral slot showing the "＋" */
+.lobia-type-chip-select:not([class*="lobia-type-"]),
+.lobia-type-chip-select.lobia-type- {
+  background: transparent;
+  color: var(--color-text-dark-primary, #444);
+  border: 1px dashed var(--color-border-dark, #888);
+  text-shadow: none;
+}
+
+/* Per-type colours (exposed as a variable, used by chips / accents) */
+.lobia-type-normal   { --lobia-type-color: #9099a1; }
+.lobia-type-feu      { --lobia-type-color: #ff6b3d; }
+.lobia-type-eau      { --lobia-type-color: #4d90d5; }
+.lobia-type-plante   { --lobia-type-color: #63bb5b; }
+.lobia-type-electrik { --lobia-type-color: #e0c020; }
+.lobia-type-glace    { --lobia-type-color: #58c0b8; }
+.lobia-type-combat   { --lobia-type-color: #ce4069; }
+.lobia-type-poison   { --lobia-type-color: #ab6ac8; }
+.lobia-type-sol      { --lobia-type-color: #d97845; }
+.lobia-type-vol      { --lobia-type-color: #8fa9de; }
+.lobia-type-psy      { --lobia-type-color: #f4727a; }
+.lobia-type-insecte  { --lobia-type-color: #90c12c; }
+.lobia-type-roche    { --lobia-type-color: #b8a878; }
+.lobia-type-spectre  { --lobia-type-color: #5269ad; }
+.lobia-type-dragon   { --lobia-type-color: #0b6dc3; }
+.lobia-type-tenebres { --lobia-type-color: #5a5366; }
+.lobia-type-acier    { --lobia-type-color: #5a8ea1; }
+.lobia-type-fee      { --lobia-type-color: #ec8fe6; }
+
+/* Fancy identity card (Principal tab) */
+.lobia-idcard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 540px;
+  margin: 0 auto 0.9rem;
+}
+.lobia-idgroup {
+  border: 1px solid var(--color-border-dark, #999);
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+}
+.lobia-idrow {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: stretch;
+  min-height: 2rem;
+}
+.lobia-idrow + .lobia-idrow { border-top: 1px solid var(--color-border-light, #ccc); }
+.lobia-idlabel {
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 0.6rem;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.06);
+  border-right: 1px solid var(--color-border-light, #ccc);
+}
+.lobia-idvalue-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.3rem;
+  padding: 0 0.6rem;
+}
+.lobia-idvalue-wrap em { font-style: normal; opacity: 0.55; font-size: 0.85em; }
+input.lobia-idvalue {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  text-align: right;
+  width: 100%;
+  height: 1.9rem;
+  font-weight: 600;
+}
+.lobia-idvalue-wrap input.lobia-idvalue { width: auto; flex: 1 1 auto; padding-right: 0; }
+.lobia-idvalue-select { flex: 1 1 auto; min-width: 0; margin: 0 0.6rem; height: 1.9rem; }
+.lobia-idvalue-wrap .lobia-idvalue-select { margin: 0; }
+.lobia-idvalue-check { display: flex; justify-content: flex-end; align-items: center; padding: 0 0.7rem; }
+.lobia-idroll { flex: 0 0 auto; padding: 0.2rem 0.4rem; cursor: pointer; }
+.lobia-id-action { align-self: center; padding: 0.3rem 0.7rem; cursor: pointer; }
+.lobia-talent-choices {
+  display: grid;
+  gap: 0.45rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0.6rem;
+  border: 1px solid var(--color-border-dark, #999);
+  border-radius: 6px;
+}
+.lobia-talent-choices legend { padding: 0 0.35rem; font-weight: 600; }
+.lobia-talent-slot { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; font-size: 0.85rem; }
+.lobia-talent-slot select { flex: 1; min-width: 0; max-width: 75%; }
+.lobia-talent-choice {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--color-border-light, #bbb);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.lobia-talent-choice.active { border-color: var(--color-border-highlight, #b89553); background: rgba(184, 149, 83, 0.12); }
+.lobia-talent-choice input { flex: 0 0 auto; accent-color: var(--color-border-highlight, #b89553); }
+.lobia-talent-choice-text { display: flex; flex-direction: column; gap: 0.1rem; }
+.lobia-talent-choice-text small { opacity: 0.7; }
+.lobia-talent-empty { margin: 0.2rem; opacity: 0.7; }
+.lobia-talent-effect {
+  padding: 0.6rem;
+  border: 1px solid var(--color-border-light, #bbb);
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.04);
+}
+.lobia-talent-effect p { margin: 0.3rem 0 0; white-space: pre-wrap; }
+.lobia-talent-sheet { display: flex; flex-direction: column; gap: 0.6rem; }
+.lobia-talent-sheet label { display: flex; flex-direction: column; gap: 0.2rem; }
+.lobia-talent-sheet textarea { resize: vertical; }
+input.lobia-idvalue:hover { background: rgba(0, 0, 0, 0.04); }
+input.lobia-idvalue:focus { background: rgba(0, 0, 0, 0.06); outline: none; }
+span.lobia-idvalue { display: flex; align-items: center; justify-content: flex-end; padding: 0 0.6rem; font-weight: 600; }
+.lobia-idtypes { gap: 0.3rem; }
+
+.lobia-idbanner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.35rem;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #5c6470, #464d57);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+.lobia-idbanner input {
+  width: 3.2rem;
+  height: 1.7rem;
+  text-align: center;
+  font-weight: 800;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+.lobia-idbanner strong { min-width: 1.5rem; text-align: center; font-size: 1.1rem; }
+.lobia-idbanner button { width: 1.6rem; height: 1.6rem; padding: 0; color: #fff; background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.3); cursor: pointer; }
+.lobia-hp-breakdown { min-width: 12rem; line-height: 1.5; }
+.lobia-hp-breakdown div { display: flex; justify-content: space-between; gap: 1rem; }
+.lobia-hp-breakdown-total { border-top: 1px solid currentColor; margin-top: 0.25rem; padding-top: 0.25rem; }
+.lobia-hp-breakdown .lobia-hp-breakdown-roll { padding-left: 0.5rem; opacity: 0.8; font-size: 0.85em; }
+
+/* Defensive typing */
+.lobia-typing h2 { display: flex; align-items: baseline; gap: 0.4rem; }
+.lobia-typing-sub { font-size: 0.75rem; font-weight: 400; opacity: 0.6; }
+.lobia-typing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.6rem;
+}
+.lobia-typing-col h3 {
+  font-size: 0.8rem;
+  margin: 0 0 0.3rem;
+  padding-bottom: 0.15rem;
+  border-bottom: 2px solid currentColor;
+}
+.lobia-typing-col h3.weak   { color: #b3402f; }
+.lobia-typing-col h3.resist { color: #2e7d32; }
+.lobia-typing-col h3.immune { color: #555; }
+.lobia-type-chips { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.lobia-eff-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.12rem 0.5rem;
+  border-radius: 999px;
+  background: var(--lobia-type-color, #888);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+}
+.lobia-eff-chip b { font-weight: 800; }
+.lobia-eff-none { opacity: 0.4; }
+
+/* Trainer identity */
+.lobia-identity {
+  margin-bottom: 0.6rem;
+  padding: 0.4rem 0.5rem;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--color-border-light, #ccc);
+  border-radius: 6px;
+}
+.lobia-identity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.35rem 0.5rem;
+}
+.lobia-identity-grid label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  font-weight: 600;
+  gap: 0.1rem;
+}
+.lobia-identity-grid input {
+  font-weight: 400;
+}
+.lobia-type-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+  padding-top: 0.4rem;
+  border-top: 1px dashed var(--color-border-light, #ccc);
+}
+.lobia-type-label { font-weight: 700; }
+.lobia-type-chip {
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: #9099a1;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.lobia-type-plus { opacity: 0.6; font-weight: 700; }
+.lobia-type-select { flex: 1; max-width: 12rem; }
+
+/* Section header with action */
+.lobia-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.lobia-section-head h2 { border-bottom: none; margin-bottom: 0.2rem; }
+.lobia-reset {
+  cursor: pointer;
+  opacity: 0.7;
+}
+.lobia-reset:hover { opacity: 1; text-shadow: 0 0 6px var(--color-shadow-primary, #ff6400); }
+
+/* Battle resources */
+.lobia-battle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+.lobia-battle-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  padding: 0.3rem 0.45rem;
+  background: rgba(60, 90, 160, 0.08);
+  border: 1px solid var(--color-border-light, #ccc);
+  border-radius: 5px;
+}
+.lobia-battle-name { font-weight: 600; }
+.lobia-battle-values { display: flex; align-items: center; gap: 0.2rem; }
+.lobia-battle-values input { width: 2.75rem; text-align: center; }
+.lobia-battle-values .sep { opacity: 0.6; }
+
+/* Shared hotbar quick-roll dialog */
+.lobia-quick-roll-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; }
+.lobia-quick-roll-fields label { display: flex; flex-direction: column; gap: 0.3rem; }
+.lobia-quick-roll-fields input, .lobia-quick-roll-fields select { width: 100%; }
+.dialog:has(.lobia-quick-roll-fields) .form-footer { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.dialog:has(.lobia-quick-roll-fields) .form-footer button { flex: 1 1 7rem; }
+
+/* Full attacking-row / defending-column reference, shared with the actor's type rules. */
+.lobia-type-chart-dialog .dialog-content { min-width: 0; }
+.lobia-type-chart-legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-bottom: 0.7rem; font-size: 0.88rem; }
+.lobia-type-chart-legend span { display: inline-flex; align-items: center; gap: 0.35rem; }
+.lobia-type-chart-legend b {
+  display: inline-grid;
+  place-items: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 3px;
+}
+.lobia-type-chart-scroll {
+  max-width: 100%;
+  max-height: min(78vh, 820px);
+  overflow: auto;
+  border: 1px solid var(--color-border-light, #bbb);
+  border-radius: 4px;
+}
+.lobia-type-chart table {
+  width: max-content;
+  margin: 0;
+  border-collapse: separate;
+  border-spacing: 1px;
+  table-layout: fixed;
+  background: #14171c;
+  font-size: 0.95rem;
+}
+.lobia-type-chart table th, .lobia-type-chart table td {
+  box-sizing: border-box;
+  width: 46px;
+  height: 41px;
+  padding: 0;
+  border: 0 !important;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.lobia-type-chart table th[scope="row"], .lobia-type-chart table th.lobia-type-chart-corner {
+  width: 125px;
+  padding: 0 0.55rem;
+}
+.lobia-type-chart table th[scope="row"] { text-align: right; position: sticky; left: 0; z-index: 2; }
+.lobia-type-chart table thead th { position: sticky; top: 0; z-index: 3; font-size: 0.82rem; }
+.lobia-type-chart table th.lobia-type-chart-corner {
+  left: 0;
+  z-index: 4;
+  background: #343a42 !important;
+  color: #fff;
+}
+.lobia-type-chart table th.lobia-chart-type {
+  background: var(--lobia-type-color) !important;
+  color: #fff;
+  text-shadow: 0 1px 1px #333;
+}
+.lobia-type-chart table th:is(.lobia-type-normal, .lobia-type-electrik, .lobia-type-glace,
+  .lobia-type-insecte, .lobia-type-roche, .lobia-type-sol, .lobia-type-fee) {
+  color: #171c24;
+  text-shadow: none;
+}
+.lobia-type-chart .lobia-chart-strong { background: #c0392b !important; color: #fff; }
+.lobia-type-chart .lobia-chart-weak { background: #27ae60 !important; color: #fff; }
+.lobia-type-chart .lobia-chart-immune { background: #111 !important; color: #fff; }
+.lobia-type-chart .lobia-chart-neutral { background: #e0e0e0 !important; color: #333; }
+.lobia-type-chart-hint { margin: 0.6rem 0 0; font-size: 0.86rem; opacity: 0.8; }
+
+/* Stat cards: Base + Modif. = Total */
+.lobia-stats .lobia-section-head {
+  align-items: baseline;
+  margin-bottom: 0.45rem;
+  padding-bottom: 0.15rem;
+  border-bottom: 2px solid var(--color-border-dark, #888);
+}
+.lobia-stats-hint {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.45;
+}
+.lobia-statgroups {
+  display: flex;
+  flex-direction: column;
+}
+/* Unnamed divider between the battle stats and the trainer stats */
+.lobia-stat-sep {
+  height: 1px;
+  margin: 0.6rem 1.5rem;
+  background: linear-gradient(90deg,
+    transparent,
+    var(--color-border-dark, #888) 22%,
+    var(--color-border-dark, #888) 78%,
+    transparent);
+  opacity: 0.4;
+}
+.lobia-statcards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: 0.45rem;
+}
+/* Sum of every base score, under the cards */
+.lobia-stats-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.4rem;
+  padding-top: 0.3rem;
+  border-top: 1px dashed var(--color-border-light, #ccc);
+}
+.lobia-stats-sum {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.6;
+}
+.lobia-stats-sum b {
+  font-size: 1.15em;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.9;
+}
+
+.lobia-statcard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.4rem 0.5rem 0.45rem;
+  border: 1px solid var(--color-border-light, #bbb);
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(140,150,170,0.14), rgba(90,100,120,0.05));
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.lobia-statcard-name {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 700;
+  font-size: 0.86rem;
+  text-decoration: none;
+  cursor: pointer;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px dashed var(--color-border-light, #ccc);
+}
+.lobia-statcard-name i { font-size: 0.78rem; opacity: 0.5; }
+.lobia-statcard-name:hover { text-shadow: 0 0 6px var(--color-shadow-primary, #ff6400); }
+.lobia-statcard-name:hover i { opacity: 1; }
+
+.lobia-statcard-row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.2rem;
+}
+.lobia-statcell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.08rem;
+  flex: 1 1 auto;
+  /* Never shrink past "-100": a cropped number is worse than a wrapped card. */
+  min-width: 2.9rem;
+}
+.lobia-statcell-label {
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.6;
+  white-space: nowrap;
+}
+.lobia-statcell input {
+  width: 100%;
+  min-width: 2.9rem;
+  max-width: 3.4rem;
+  height: 1.7rem;
+  padding: 0 0.15rem;
+  text-align: center;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  border: 1px solid transparent;
+  background: rgba(0,0,0,0.05);
+  border-radius: 5px;
+}
+
+/* Spinner arrows steal ~16px of a 50px box and crop the digits. */
+.lobia-statcell input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+.lobia-statcell input[type="number"]::-webkit-outer-spin-button,
+.lobia-statcell input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.lobia-statcell input:hover { background: rgba(0,0,0,0.09); }
+.lobia-statcell input:focus {
+  background: rgba(0,0,0,0.1);
+  border-color: var(--color-border-dark, #888);
+  outline: none;
+}
+.lobia-statop {
+  padding-bottom: 0.3rem;
+  font-weight: 700;
+  opacity: 0.35;
+}
+
+/* Modifier cell: tinted by sign */
+.lobia-statcell-mod.pos input { color: #2e7d32; background: rgba(46,125,50,0.12); }
+.lobia-statcell-mod.neg input { color: #b3402f; background: rgba(179,64,47,0.12); }
+.lobia-statcell-mod.zero input { opacity: 0.55; }
+
+/* Total: computed, never editable */
+.lobia-stat-total {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 2.9rem;
+  max-width: 3.4rem;
+  height: 1.7rem;
+  border-radius: 5px;
+  font-weight: 800;
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+  background: linear-gradient(180deg, #5c6470, #464d57);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.lobia-statcell-total .lobia-statcell-label { opacity: 0.8; }
+
+/* Derived cards reuse the stat-card chrome; only the grid is tighter and the
+   name is a label rather than a roll link. */
+.lobia-derived .lobia-section-head,
+.lobia-battle-settings .lobia-section-head {
+  align-items: baseline;
+  margin-bottom: 0.45rem;
+  padding-bottom: 0.15rem;
+  border-bottom: 2px solid var(--color-border-dark, #888);
+}
+.lobia-battle-settings { margin-top: 0.9rem; }
+.lobia-derived-grid { grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); }
+.lobia-statcard-name.is-static { cursor: default; }
+.lobia-statcard-name.is-static:hover { text-shadow: none; }
+.lobia-statcard-name.is-static i { opacity: 0.55; }
+
+/* Computed part of a derived value: read-only, styled like a disabled input */
+.lobia-derived-base {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 2.9rem;
+  max-width: 3.4rem;
+  height: 1.7rem;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.05);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.lobia-derived-base.has-bonus {
+  background: rgba(46, 125, 50, 0.12);
+  color: #2e7d32;
+  cursor: help;
+}
+.lobia-derived-base.nature-negative {
+  background: rgba(179, 64, 47, 0.12);
+  color: #b3402f;
+  cursor: help;
+}
+
+/* Item sheet fields */
+.lobia-field-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+.lobia-field-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+.lobia-field-col textarea { resize: vertical; }
+
+/* Tabs */
+.lobia .sheet-tabs { flex: 0 0 auto; }
+.lobia .tab { display: none; }
+.lobia .tab.active { display: block; }
+.lobia.sheet.actor .tab.lobia-sheet-body.active { margin-top: 0.7rem; }
+
+.lobia-notes textarea { display: block; width: 100%; min-height: 18rem; resize: vertical; margin: 0.5rem 0; }
+
+/* Skill-tree tab */
+.lobia-tree-summary {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.4rem 0.6rem;
+  margin-bottom: 0.6rem;
+  background: rgba(60, 90, 160, 0.08);
+  border: 1px solid var(--color-border-light, #ccc);
+  border-radius: 6px;
+}
+.lobia-tree-summary .muted { opacity: 0.6; }
+.lobia-tree-summary b { font-size: 1.05em; }
+
+.lobia-dominant-choice { display: flex; align-items: center; gap: 0.5rem; margin: 0.5rem 0; }
+.lobia-dominant-choice select { flex: 0 1 12rem; }
+
+.lobia-dominant-editor .lobia-dominant-edit-cell { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: 0.2rem; }
+.lobia-dominant-editor .cells-1 .lobia-dominant-edit-cell { flex: 0 1 calc(50% - 0.15rem); }
+.lobia-dominant-editor .lobia-dominant-edit-cell input { width: 100%; }
+.lobia-dominant-editor .lobia-dominant-edit-cell textarea { width: 100%; min-height: 3rem; resize: vertical; font-size: 0.75rem; }
+.lobia-tree-tool { width: auto; flex: 0 0 auto; padding: 0.2rem 0.5rem; font-size: 0.8rem; cursor: pointer; }
+.lobia-custom-tree-heading { display: flex; align-items: center; justify-content: center; gap: 0.25rem; margin-bottom: 0.4rem; min-height: 1.6rem; }
+.lobia-custom-tree-heading input { min-width: 0; flex: 1; font-size: 0.8rem; }
+.lobia-custom-tree-heading button { width: 1.7rem; flex: none; padding: 0; color: #a83232; }
+.lobia-custom-tree-heading strong { font-size: 0.85rem; overflow-wrap: anywhere; }
+.lobia-custom-tree-condition { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.4rem; }
+.lobia-custom-tree-condition label { display: flex; flex: 1 1 8rem; flex-direction: column; gap: 0.15rem; font-size: 0.72rem; }
+.lobia-custom-tree-condition input, .lobia-custom-tree-condition select { width: 100%; }
+.lobia-node input.lobia-node-edit { width: 100%; min-width: 0; height: 1.8rem; padding: 0 0.15rem; font-size: 0.7rem; text-align: center; color: #222; background: #fff; }
+
+.lobia-trees {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 0.8rem;
+}
+.lobia-tree {
+  border: 1px solid var(--color-border-light, #ccc);
+  border-radius: 8px;
+  padding: 0.4rem;
+  background: rgba(0, 0, 0, 0.02);
+}
+.lobia-tree-title {
+  text-align: center;
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 3px solid var(--lobia-type-color, var(--color-border-dark, #888));
+}
+.lobia-tree-rows { display: flex; flex-direction: column; gap: 0.3rem; }
+.lobia-tree-row { display: flex; gap: 0.3rem; justify-content: center; }
+.lobia-tree-row .lobia-node { flex: 1; }
+
+.lobia-node {
+  min-height: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.2rem 0.3rem;
+  border: 1px solid var(--color-border-dark, #777);
+  border-radius: 6px;
+  font-size: 0.72rem;
+  line-height: 1.1;
+  background: #e9e9ee;
+  color: #333;
+  transition: box-shadow 0.15s, transform 0.1s;
+  gap: 0.2rem;
+}
+.lobia-node-hp { font-size: 0.65rem; font-weight: 700; white-space: nowrap; }
+.lobia-node-hp-saved { opacity: 0.8; }
+.lobia-node-hp-roll { flex: 0 0 auto; width: 1.4rem; min-height: 1.4rem; padding: 0; cursor: pointer; }
+.lobia-node .lobia-node-label {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.lobia-node[data-action] { cursor: pointer; }
+.lobia-node[data-action]:hover { transform: translateY(-1px); box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+
+.lobia-node.kind-root { background: #fff; color: #333; font-weight: 700; }
+.lobia-node.kind-competence { border-style: dashed; font-weight: 600; }
+.lobia-node.kind-terminal { border-width: 2px; }
+
+.lobia-node.status-locked { opacity: 0.5; }
+.lobia-node.status-available {
+  border-color: #d9a300;
+  box-shadow: 0 0 0 2px rgba(217, 163, 0, 0.35);
+}
+.lobia-node.status-unlocked { background: #2e7d32; color: #fff; border-color: #1e5c22; }
+
+.lobia-tree-future { opacity: 0.72; }
+.lobia-tree-note { margin: 0.3rem 0; font-size: 0.75rem; font-style: italic; opacity: 0.7; }
+/* Rendered by Foundry in its global tooltip container, outside the actor sheet. */
+#tooltip.lobia-move-tooltip { max-width: min(360px, calc(100vw - 2rem)); padding: 0; background: transparent; }
+.lobia-move-tip {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.7rem;
+  border: 1px solid var(--lobia-type-color, #888);
+  border-left: 4px solid var(--lobia-type-color, #888);
+  border-radius: 7px;
+  background: #202630;
+  color: #f4f5f7;
+  text-align: left;
+  line-height: 1.4;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+.lobia-move-tip-head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; }
+.lobia-move-tip-head strong { font-size: 1rem; }
+.lobia-move-tip-type {
+  flex: none;
+  padding: 0.12rem 0.45rem;
+  border-radius: 1rem;
+  background: var(--lobia-type-color, #888);
+  color: #171c24;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+.lobia-move-tip-category { margin-top: 0.15rem; color: #c4cedc; font-size: 0.76rem; }
+.lobia-move-tip-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.35rem;
+  margin-top: 0.6rem;
+}
+.lobia-move-tip-field { display: flex; flex-direction: column; padding: 0.3rem 0.45rem; border-radius: 4px; background: rgba(255,255,255,0.08); }
+.lobia-move-tip-field small { color: #c4cedc; font-size: 0.7rem; }
+.lobia-move-tip-field b { font-size: 0.85rem; }
+.lobia-move-tip-description, .lobia-move-tip-note { margin: 0.65rem 0 0; white-space: normal; }
+.lobia-move-tip-note { padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.25); color: #d8dfec; font-style: italic; }
+.lobia-pokemon-move-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(16rem, 100%), 1fr)); gap: 0.55rem; }
+.lobia-move-card { min-width: 0; }
+.lobia-move-card .lobia-move-tip { height: 100%; padding: 0.6rem; }
+.lobia-move-card:has(.lobia-metronome-roll) .lobia-move-tip { height: auto; }
+.lobia-metronome-roll {
+  width: 100%;
+  margin-top: 0.3rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--color-border-light, #bbb);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.lobia-metronome-result .lobia-move-tip { margin-top: 0.4rem; }
+.lobia-tree-future .lobia-node.status-unlocked { background: #3a4a63; border-color: #777; }
+.lobia-node.lobia-node-restricted { opacity: 0.45; }
+.lobia-tree-future:has(.lobia-node-pp-max) { opacity: 1; }
+.lobia-node.lobia-node-pp-max,
+.lobia-tree-future .lobia-node.lobia-node-pp-max {
+  background: #2e7d32;
+  color: #fff;
+  border-color: #1e5c22;
+  opacity: 1;
+}
+.lobia-ct-panel { margin: 0.6rem 0 0.9rem; }
+.lobia-division-members { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0.45rem; }
+.lobia-division-members label { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+.lobia-division-members select { width: 100%; min-width: 0; }
+.lobia-division-portrait { width: 64px; height: 64px; object-fit: contain; align-self: center; border: 0; }
+.lobia-division-tree-portrait { width: 48px; height: 48px; object-fit: contain; border: 0; }
+.lobia-ct-slots { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.45rem; }
+.lobia-ct-slot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+  padding: 0.55rem;
+  border: 1px solid var(--color-border-light, #888);
+  border-radius: 6px;
+  background: rgba(128, 128, 128, 0.12);
+}
+.lobia-ct-slot.lobia-ct-learned { border-color: #2e7d32; background: rgba(46, 125, 50, 0.18); }
+.lobia-ct-slot strong { overflow-wrap: anywhere; }
+.lobia-ct-branch { font-size: 0.72rem; opacity: 0.85; }
+.lobia-ct-slot button { margin-top: auto; }
+@media (max-width: 650px) { .lobia-ct-slots { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Tree reset button */
+.lobia-tree-reset {
+  margin-left: auto;
+  flex: 0 0 auto;
+  width: auto;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.8rem;
+  background: rgba(160, 40, 40, 0.12);
+  border: 1px solid #a83232;
+  border-radius: 5px;
+  color: #a83232;
+  cursor: pointer;
+}
+.lobia-tree-reset:hover { background: #a83232; color: #fff; }
+
+/* Battle effective total */
+.lobia-battle-total { font-weight: 700; color: #2e7d32; white-space: nowrap; }
+
+/* Skills panel */
+.lobia-skills { margin-top: 0.4rem; }
+.lobia-steps-badge { font-size: 0.85rem; }
+.lobia-skill-branch {
+  border: 1px solid var(--color-border-light, #ccc);
+  border-radius: 6px;
+  margin-bottom: 0.4rem;
+  padding: 0.2rem 0.4rem;
+}
+.lobia-skill-branch > summary {
+  cursor: pointer;
+  font-weight: 700;
+  padding: 0.2rem;
+}
+.lobia-skill-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.35rem;
+  padding: 0.3rem 0;
+}
+.lobia-skill {
+  border: 1px solid var(--color-border-light, #ddd);
+  border-radius: 5px;
+  padding: 0.3rem 0.4rem;
+  background: rgba(0, 0, 0, 0.02);
+}
+.lobia-skill.tier-1 { border-left: 3px solid #7aa4d6; }
+.lobia-skill.tier-2 { border-left: 3px solid #4b7bc8; }
+.lobia-skill.tier-3, .lobia-skill.maxed { border-left: 3px solid #d9a300; }
+.lobia-skill-head { display: flex; align-items: center; justify-content: space-between; gap: 0.4rem; }
+.lobia-skill-name { font-weight: 600; font-size: 0.82rem; }
+.lobia-skill-cat { opacity: 0.55; font-weight: 400; font-size: 0.75em; }
+.lobia-skill-tier { display: flex; align-items: center; gap: 0.3rem; white-space: nowrap; }
+.lobia-skill-tier a { cursor: pointer; }
+.lobia-skill-tier a.disabled { opacity: 0.3; }
+.lobia-skill-tier .tier-dots { font-variant-numeric: tabular-nums; font-weight: 700; }
+.lobia-skill-effect { font-size: 0.75rem; opacity: 0.85; margin-top: 0.2rem; }
+
+/* Chat card */
+.lobia-roll {
+  border: 1px solid var(--color-border-dark, #666);
+  border-radius: 6px;
+  padding: 0.4rem 0.5rem;
+}
+.lobia-roll-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.lobia-roll-outcome {
+  margin-top: 0.3rem;
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.2rem;
+  border-radius: 4px;
+}
+.lobia-roll-style { margin-top: 0.4rem; font-size: 0.78rem; font-style: italic; }
+.lobia-roll.outcome-critSuccess .lobia-roll-outcome { background: #1e7a34; color: #fff; }
+.lobia-roll.outcome-success     .lobia-roll-outcome { background: #2e7d32; color: #fff; opacity: 0.85; }
+.lobia-roll.outcome-failure     .lobia-roll-outcome { background: #8a2b2b; color: #fff; opacity: 0.85; }
+.lobia-roll.outcome-critFailure .lobia-roll-outcome { background: #b71c1c; color: #fff; }
+
+/* ============ Inventory tab ============ */
+/* Pastel accents lifted from the paper sheet; text colour is pinned so the
+   panels stay readable whatever the Foundry theme. */
+.lobia-cat-pokeball { --lobia-cat-color: #d0e0e3; }
+.lobia-cat-bonus    { --lobia-cat-color: #d9ead3; }
+.lobia-cat-recharge { --lobia-cat-color: #fce5cd; }
+.lobia-cat-objets-tenus { --lobia-cat-color: #ead6be; }
+.lobia-cat-equipement { --lobia-cat-color: #d4dfe8; }
+.lobia-cat-baies { --lobia-cat-color: #e8cad3; }
+.lobia-cat-autre    { --lobia-cat-color: #cfe2f3; }
+.lobia-cat-arme     { --lobia-cat-color: #f9cb9c; }
+.lobia-cat-accessoire { --lobia-cat-color: #d9d2e9; }
+
+/* --- Weapon slots --- */
+.lobia-weapons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.7rem;
+}
+.lobia-weapon-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0.4rem;
+}
+.lobia-weapon-index {
+  flex: 0 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 0.8rem;
+  color: #fff;
+  background: linear-gradient(180deg, #5c6470, #464d57);
+}
+.lobia-weapon-pair {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border: 1px solid var(--color-border-dark, #999);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.lobia-slot {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 1.9rem;
+  padding: 0.15rem 0.45rem;
+  background: rgba(255, 255, 255, 0.06);
+  text-decoration: none;
+}
+.lobia-slot.accessory {
+  background: rgba(0, 0, 0, 0.06);
+  font-size: 0.85em;
+}
+.lobia-slot img {
+  flex: 0 0 1.4rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  object-fit: cover;
+  border: none;
+  border-radius: 3px;
+}
+.lobia-slot-name {
+  flex: 1;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+.lobia-slot-name:hover { text-shadow: 0 0 6px var(--color-shadow-primary, #ff6400); }
+.lobia-slot.empty {
+  justify-content: center;
+  color: var(--color-text-dark-secondary, #777);
+  font-size: 0.78rem;
+  font-style: italic;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.lobia-slot.empty:hover { opacity: 1; background: rgba(0, 0, 0, 0.08); }
+.lobia-slot-del, .lobia-invrow-del {
+  flex: 0 0 auto;
+  cursor: pointer;
+  opacity: 0.35;
+  font-size: 0.8rem;
+}
+.lobia-slot-del:hover, .lobia-invrow-del:hover { opacity: 1; color: #b3402f; }
+
+/* --- Category buckets --- */
+.lobia-buckets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.5rem;
+}
+.lobia-create-category {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+.lobia-category-fields { display: grid; gap: 0.5rem; }
+.lobia-subcategory-row { display: flex; align-items: end; gap: 0.75rem; }
+.lobia-subcategory-row > label:first-child { flex: 1; }
+.lobia-bucket {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border-dark, #999);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.lobia-bucket-head {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.5rem;
+  background: var(--lobia-cat-color, #ddd);
+  color: #2b2b2b;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.lobia-bucket-head i { opacity: 0.6; }
+.lobia-bucket-label { flex: 1; }
+.lobia-bucket-count {
+  min-width: 1.3rem;
+  padding: 0 0.3rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.14);
+  text-align: center;
+  font-size: 0.72rem;
+}
+.lobia-bucket-add { cursor: pointer; opacity: 0.55; }
+.lobia-bucket-add:hover { opacity: 1; }
+.lobia-bucket-delete { cursor: pointer; opacity: 0.55; }
+.lobia-bucket-delete:hover { opacity: 1; color: #b3402f; }
+.lobia-bucket-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-height: 3rem;
+  padding: 0.2rem;
+  background: color-mix(in srgb, var(--lobia-cat-color, #ddd) 18%, transparent);
+}
+.lobia-bucket-empty {
+  margin: auto;
+  padding: 0.4rem;
+  font-size: 0.75rem;
+  font-style: italic;
+  opacity: 0.45;
+  text-align: center;
+}
+.lobia-invrow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.18rem 0.35rem;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.35);
+}
+.lobia-invrow:hover { background: rgba(255, 255, 255, 0.6); }
+.lobia-invrow img {
+  flex: 0 0 1.3rem;
+  width: 1.3rem;
+  height: 1.3rem;
+  object-fit: cover;
+  border: none;
+  border-radius: 3px;
+}
+.lobia-invrow-name {
+  flex: 1;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #2b2b2b;
+  cursor: pointer;
+  text-decoration: none;
+}
+.lobia-invrow-name:hover { text-shadow: 0 0 6px var(--color-shadow-primary, #ff6400); }
+.lobia-invrow-qty {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  color: #2b2b2b;
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+.lobia-invrow-qty a { cursor: pointer; opacity: 0.4; font-weight: 700; }
+.lobia-invrow-qty a:hover { opacity: 1; }
+.lobia-invrow-qty b { min-width: 1rem; text-align: center; }
+
+.lobia-inv-notes {
+  margin-top: 0.2rem;
+  border: 1px dashed var(--color-border-light, #bbb);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.35);
+  color: #2b2b2b;
+  font-size: 0.8rem;
+  resize: vertical;
+}
+
+/* Foundry renders inventory hover cards in its global tooltip container. */
+#tooltip.lobia-item-tooltip { max-width: min(360px, calc(100vw - 2rem)); padding: 0; background: transparent; }
+.lobia-item-tip {
+  width: 100%; max-height: min(70vh, 600px); overflow-y: auto; box-sizing: border-box; padding: 0.7rem;
+  border: 1px solid #7aa4d6; border-left: 4px solid #7aa4d6; border-radius: 7px;
+  background: #202630; color: #f4f5f7; text-align: left; line-height: 1.4;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+.lobia-item-tip-head { display: flex; align-items: center; gap: 0.5rem; }
+.lobia-item-tip-head img { width: 2rem; height: 2rem; object-fit: contain; }
+.lobia-item-tip-head strong { flex: 1; font-size: 1rem; }
+.lobia-item-tip-category { padding: 0.12rem 0.45rem; border-radius: 1rem; background: #7aa4d6; color: #171c24; font-size: 0.7rem; font-weight: 800; }
+.lobia-item-tip-subcategory { margin-top: 0.2rem; color: #c4cedc; font-size: 0.76rem; }
+.lobia-item-tip-price { display: flex; justify-content: space-between; gap: 0.5rem; margin-top: 0.6rem; padding: 0.3rem 0.45rem; border-radius: 4px; background: rgba(255,255,255,0.08); }
+.lobia-item-tip-price small { color: #c4cedc; }
+.lobia-item-tip-description { margin-top: 0.65rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.25); overflow-wrap: anywhere; }
+.lobia-item-tip-description p { margin: 0.15rem 0; }
+
+/* Sub-category grouping inside a bucket */
+.lobia-subgroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.lobia-subgroup + .lobia-subgroup { margin-top: 0.25rem; }
+.lobia-subgroup-label {
+  padding: 0.1rem 0.35rem;
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #2b2b2b;
+  opacity: 0.55;
+}
+
+/* Weapons/accessories carried but not slotted */
+.lobia-reserve {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 0.7rem;
+  padding: 0.3rem 0.45rem;
+  border: 1px dashed var(--color-border-light, #bbb);
+  border-radius: 8px;
+}
+.lobia-reserve-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.5;
+}
+.lobia-reserve-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.07);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.lobia-reserve-chip a { cursor: pointer; text-decoration: none; }
+
+/* Item sheet */
+.lobia-item-cat {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+}
+.lobia-item-price { display: flex; align-items: center; gap: 0.3rem; }
+.lobia-item-price input { width: 6rem; text-align: right; }
+.lobia-item-price em { font-style: normal; opacity: 0.55; }
+
+/* ============ Skill & tree item sheets ============ */
+.lobia-nature-sheet { display: flex; flex-direction: column; gap: 0.5rem; }
+.lobia-nature-sheet > label,
+.lobia-nature-range label,
+.lobia-nature-effect { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; }
+.lobia-nature-range { display: flex; gap: 0.7rem; }
+.lobia-nature-range label { flex: 1; }
+.lobia-nature-range input,
+.lobia-nature-effect input { width: 4rem; text-align: center; }
+.lobia-nature-sheet > label input { flex: 0 1 12rem; }
+.lobia-skill-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.3rem;
+}
+.lobia-skill-meta select { flex: 1 1 auto; font-size: 0.8rem; }
+.lobia-skill-meta .lobia-type-chip-select { flex: 0 0 auto; }
+.lobia-skill-key {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+}
+.lobia-skill-key span { flex: 0 0 auto; opacity: 0.55; }
+.lobia-skill-key input {
+  flex: 1 1 auto;
+  font-family: monospace;
+  font-weight: 700;
+}
+
+/* Tree item sheet: same shape the trainer sheet draws */
+.lobia-arbre-hint {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  font-style: italic;
+  opacity: 0.6;
+}
+.lobia-arbre-rows { display: flex; flex-direction: column; gap: 0.3rem; }
+.lobia-arbre-row { display: flex; gap: 0.3rem; justify-content: center; }
+.lobia-arbre-cell {
+  flex: 1;
+  min-height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--color-border-dark, #777);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  line-height: 1.15;
+  background: #e9e9ee;
+  color: #333;
+}
+input.lobia-arbre-cell.editable {
+  background: #fff;
+  font-weight: 600;
+  text-align: center;
+}
+input.lobia-arbre-cell.editable:focus {
+  border-color: #d9a300;
+  box-shadow: 0 0 0 2px rgba(217, 163, 0, 0.3);
+  outline: none;
+}
+.lobia-arbre-cell.kind-root { background: #3a4a63; color: #fff; font-weight: 700; }
+.lobia-arbre-cell.kind-competence { border-style: dashed; font-weight: 600; }
+.lobia-arbre-cell.kind-terminal { border-width: 2px; font-weight: 600; }
+
+/* ============ Generated rulebook (Guide du Dresseur) ============ */
+/* System styles load globally, so these apply inside the journal sheet and its
+   compendium preview. Mirrors the trainer sheet's tree so the two read alike. */
+.lobia-guide-tree {
+  width: 100%;
+  max-width: 34rem;
+  margin: 0.6rem auto;
+  border-collapse: separate;
+  border-spacing: 0.25rem;
+  table-layout: fixed;
+}
+.lobia-guide-node {
+  padding: 0.35rem 0.4rem;
+  border: 1px solid var(--color-border-dark, #777);
+  border-radius: 6px;
+  background: #e9e9ee;
+  color: #333;
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.2;
+}
+.lobia-guide-node.kind-competence { border-style: dashed; font-weight: 600; }
+.lobia-guide-node.kind-terminal {
+  border-width: 2px;
+  font-weight: 700;
+  background: #3a4a63;
+  color: #fff;
+}
+.lobia-guide-cat {
+  margin: 0.1rem 0 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.55;
+}
+.lobia-guide-tiers { margin: 0 0 1.1rem; }
+.lobia-guide-tiers dt {
+  float: left;
+  clear: left;
+  width: 5.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.6;
+  padding-top: 0.15rem;
+}
+.lobia-guide-tiers dd { margin: 0 0 0.35rem 6rem; }
+
+/* The authored Météo entry shares the Guide du Dresseur compendium. */
+.lobia-weather-page { max-width: 48rem; margin: 0 auto; line-height: 1.55; }
+.lobia-weather-page h2 { margin-bottom: 0.35rem; }
+.lobia-weather-page p { margin: 0.65rem 0; }
+.lobia-weather-page .lobia-weather-type {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: var(--lobia-type-color, #777);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+}

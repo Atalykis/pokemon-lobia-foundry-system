@@ -1,0 +1,40 @@
+{{! Derived values ("Modificateur") — same card as a stat: Base + Modif. = Total.
+    Base is computed (stats + unlocked tree nodes) and read-only; Modif. is typed in. }}
+<section class="lobia-derived">
+  <div class="lobia-section-head">
+    <h2>{{localize "LOBIA.Derived.title"}}</h2>
+    <span class="lobia-stats-hint">{{localize "LOBIA.StatCol.hint"}}</span>
+  </div>
+
+  <div class="lobia-statcards lobia-derived-grid">
+    {{#each derived}}
+    <div class="lobia-statcard">
+      <span class="lobia-statcard-name is-static">
+        <i class="fa-solid {{this.icon}}"></i><span>{{this.label}}</span>
+      </span>
+
+      <div class="lobia-statcard-row">
+        <div class="lobia-statcell">
+          <span class="lobia-statcell-label">{{localize "LOBIA.StatCol.base"}}</span>
+          <span class="lobia-derived-base{{#if this.hasBonus}} has-bonus{{/if}}"
+                {{#if this.baseTooltip}}data-tooltip="{{this.baseTooltip}}"{{/if}}>{{this.base}}</span>
+        </div>
+
+        <span class="lobia-statop">+</span>
+
+        <div class="lobia-statcell lobia-statcell-mod {{this.modClass}}">
+          <span class="lobia-statcell-label">{{localize "LOBIA.StatCol.mod"}}</span>
+          <input type="number" step="1" name="system.derivedMods.{{this.key}}" value="{{this.mod}}">
+        </div>
+
+        <span class="lobia-statop">=</span>
+
+        <div class="lobia-statcell lobia-statcell-total">
+          <span class="lobia-statcell-label">{{localize "LOBIA.StatCol.total"}}</span>
+          <span class="lobia-stat-total">{{this.total}}</span>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</section>

@@ -1,0 +1,137 @@
+{{! Shared actor header — always visible above the tabs. Single root element required by ApplicationV2. }}
+<div class="lobia-header-part">
+  <div class="lobia-hd">
+    {{#if isPokemon}}
+    <span class="lobia-hd-name">{{pokemonDisplayName}}</span>
+    {{else}}
+    <input class="lobia-hd-name" type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'LOBIA.Name'}}">
+    {{/if}}
+
+    <div class="lobia-hd-body">
+      <div class="lobia-hd-stats">
+        <div class="lobia-pill lobia-pill-hp">
+          <span class="lobia-pill-label">{{localize "LOBIA.HP"}}</span>
+          <span class="lobia-pill-vals">
+            <input type="number" name="system.hp.value" value="{{system.hp.value}}">
+            <span class="sep">/</span>
+            <span class="lobia-pill-total"{{#if system.hp.bonus}} data-tooltip="base {{system.hp.base}} + {{system.hp.bonus}}"{{/if}}>{{system.hp.max}}</span>
+          </span>
+        </div>
+
+        {{#each battle}}
+        <div class="lobia-pill">
+          <span class="lobia-pill-label">{{this.label}}</span>
+          <span class="lobia-pill-vals">
+            <input type="number" min="0" name="system.battle.{{this.key}}.value" value="{{this.value}}">
+            <span class="sep">/</span>
+            <span class="lobia-pill-total"{{#if this.bonus}} data-tooltip="base {{this.max}} + {{this.bonus}}"{{/if}}>{{this.total}}</span>
+          </span>
+        </div>
+        {{/each}}
+
+        <a class="lobia-pill-reset" data-action="resetBattle" data-tooltip="{{localize 'LOBIA.Battle.reset'}}">
+          <i class="fa-solid fa-rotate-left"></i>
+        </a>
+      </div>
+
+      <img class="lobia-hd-portrait" src="{{actor.img}}" data-edit="img" data-action="editImage" alt="{{actor.name}}">
+    </div>
+
+    <div class="lobia-hd-combat-style">
+      <label for="lobia-style-{{actor.id}}">{{localize "LOBIA.CombatStyle.label"}}</label>
+      <select id="lobia-style-{{actor.id}}" name="system.combatStyle">
+        {{selectOptions combatStyleChoices selected=system.combatStyle localize=true}}
+      </select>
+      <span class="lobia-hd-style-hint">{{combatStyleDescription}}</span>
+    </div>
+
+    <section class="lobia-status-panel">
+      <strong class="lobia-status-heading">{{localize "LOBIA.Status.heading"}}</strong>
+      {{#if actorStatuses.length}}
+      <div class="lobia-status-list">
+        {{#each actorStatuses}}
+        <div class="lobia-status-chip" data-tooltip="{{this.rule}}">
+          <img src="{{this.img}}" alt="">
+          <span>{{this.name}} <b>{{this.levelLabel}}</b></span>
+          {{#if ../canEditStatuses}}
+          <span class="lobia-status-controls">
+            <button type="button" data-action="lowerStatus" data-status="{{this.key}}" data-level="{{this.level}}"
+              aria-label="{{localize 'LOBIA.Status.lower'}}" {{#unless this.canLower}}disabled{{/unless}}>−</button>
+            <button type="button" data-action="raiseStatus" data-status="{{this.key}}" data-level="{{this.level}}"
+              aria-label="{{localize 'LOBIA.Status.raise'}}" {{#unless this.canRaise}}disabled{{/unless}}>+</button>
+            <button type="button" data-action="removeStatus" data-status="{{this.key}}"
+              aria-label="{{localize 'LOBIA.Status.remove'}}">×</button>
+          </span>{{/if}}
+        </div>
+        {{/each}}
+      </div>
+      {{else}}<span class="lobia-status-empty">{{localize "LOBIA.Status.none"}}</span>{{/if}}
+      {{#if canAddStatus}}
+      <div class="lobia-status-add">
+        <select data-role="lobia-status-key" aria-label="{{localize 'LOBIA.Status.heading'}}">
+          {{selectOptions statusChoices}}
+        </select>
+        <select data-role="lobia-status-level" aria-label="{{localize 'LOBIA.Status.levelLabel'}}">
+          {{selectOptions statusLevelChoices selected=1}}
+        </select>
+        <button type="button" data-action="addStatus"><i class="fa-solid fa-plus"></i> {{localize "LOBIA.Status.add"}}</button>
+      </div>{{/if}}
+    </section>
+
+    {{#if isPokemon}}
+    <div class="lobia-hd-types">
+      <span class="lobia-hd-types-label">{{localize "LOBIA.Typing.type"}}</span>
+      <select class="lobia-type-chip-select lobia-type-{{primaryType}}" name="system.type.primary">
+        {{selectOptions typeChoices selected=primaryType localize=true}}
+      </select>
+      <select class="lobia-type-chip-select lobia-type-{{secondaryType}}" name="system.type.secondary">
+        {{selectOptions typeChoices selected=secondaryType localize=true blank="＋"}}
+      </select>
+    </div>
+    <section class="lobia-pokemon-inventory" aria-label="{{localize 'LOBIA.PokemonInventory.title'}}">
+      <div class="lobia-pokemon-inventory-heading">
+        <strong>{{localize "LOBIA.PokemonInventory.title"}}</strong>
+        {{#if canEditPokemonItems}}<button type="button" data-action="openPokemonItems" data-tooltip="{{localize 'LOBIA.PokemonInventory.browse'}}">
+          <i class="fa-solid fa-box-open"></i> {{localize "LOBIA.PokemonInventory.browse"}}
+        </button>{{/if}}
+      </div>
+      <div class="lobia-pokemon-inventory-slots">
+        {{#each pokemonItemSlots}}
+        <div class="lobia-pokemon-item-slot" data-pokemon-item-slot="{{this.key}}">
+          <span class="lobia-pokemon-item-label">{{this.label}}</span>
+          {{#if this.item}}
+          <div class="lobia-pokemon-item draggable" data-item-id="{{this.item.id}}" draggable="true"
+               data-tooltip-html="{{this.item.tooltip}}" data-tooltip-class="lobia-item-tooltip">
+            <img src="{{this.item.img}}" alt="">
+            <button type="button" class="lobia-pokemon-item-name" data-action="openPokemonItem" data-slot="{{this.key}}" data-item-id="{{this.item.id}}">{{this.item.name}}</button>
+            {{#if ../canEditPokemonItems}}<button type="button" class="lobia-pokemon-item-remove" data-action="removePokemonItem" data-slot="{{this.key}}" data-item-id="{{this.item.id}}" aria-label="{{localize 'LOBIA.PokemonInventory.remove'}}" data-tooltip="{{localize 'LOBIA.PokemonInventory.remove'}}">×</button>{{/if}}
+          </div>
+          {{else}}<span class="lobia-pokemon-item-empty">{{localize "LOBIA.PokemonInventory.empty"}}</span>{{/if}}
+        </div>
+        {{/each}}
+      </div>
+    </section>
+    {{/if}}
+
+    <div class="lobia-hd-typing">
+      <div class="lobia-hd-typerow">
+        <span class="lobia-hd-typelabel weak">{{localize "LOBIA.Typing.weaknesses"}}</span>
+        <div class="lobia-type-chips">
+          {{#each weaknesses}}<span class="lobia-eff-chip lobia-type-{{this.type}}">{{this.label}} <b>{{this.multLabel}}</b></span>{{else}}<span class="lobia-eff-none">—</span>{{/each}}
+        </div>
+      </div>
+      <div class="lobia-hd-typerow">
+        <span class="lobia-hd-typelabel resist">{{localize "LOBIA.Typing.resistances"}}</span>
+        <div class="lobia-type-chips">
+          {{#each resistances}}<span class="lobia-eff-chip lobia-type-{{this.type}}">{{this.label}} <b>{{this.multLabel}}</b></span>{{else}}<span class="lobia-eff-none">—</span>{{/each}}
+        </div>
+      </div>
+      <div class="lobia-hd-typerow">
+        <span class="lobia-hd-typelabel immune">{{localize "LOBIA.Typing.immunities"}}</span>
+        <div class="lobia-type-chips">
+          {{#each immunities}}<span class="lobia-eff-chip lobia-type-{{this.type}}">{{this.label}}</span>{{else}}<span class="lobia-eff-none">—</span>{{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

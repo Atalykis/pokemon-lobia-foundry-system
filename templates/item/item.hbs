@@ -1,0 +1,26 @@
+{{! ApplicationV2 requires a single root element per part. }}
+<div class="lobia-item-part">
+<header class="lobia-header">
+  <img class="lobia-portrait" src="{{item.img}}" data-edit="img" data-action="editImage" alt="{{item.name}}">
+  <div class="lobia-header-fields">
+    <input class="lobia-name" type="text" name="name" value="{{item.name}}" placeholder="{{localize 'LOBIA.Name'}}">
+    <select class="lobia-item-cat" name="system.subcategory">
+      {{selectOptions subcategoryOptions selected=system.subcategory valueAttr="value" labelAttr="label"}}
+    </select>
+  </div>
+</header>
+
+<div class="lobia-sheet-body">
+  <div class="lobia-field-row">
+    <label>{{localize "LOBIA.Item.price"}}</label>
+    <span class="lobia-item-price">
+      <input type="number" min="0" name="system.price" value="{{system.price}}"><em>₽</em>
+    </span>
+  </div>
+
+  <div class="lobia-field-col">
+    <label>{{localize "LOBIA.Item.description"}}</label>
+    <textarea name="system.description" rows="8">{{system.description}}</textarea>
+  </div>
+</div>
+</div>

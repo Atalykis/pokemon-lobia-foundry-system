@@ -1,0 +1,58 @@
+{{! Stat block — one card per stat: Base + Modif. = Total (total is computed, never editable). }}
+{{! Groups (battle stats / trainer stats) are separated by a plain hairline, no heading. }}
+<section class="lobia-stats">
+  <div class="lobia-section-head">
+    <h2>{{localize "LOBIA.Stats"}}</h2>
+    <span class="lobia-stats-hint">{{localize "LOBIA.StatCol.hint"}}</span>
+  </div>
+
+  <div class="lobia-statgroups">
+    {{#each statGroups}}
+    {{#unless @first}}<div class="lobia-stat-sep"></div>{{/unless}}
+
+    <div class="lobia-statcards">
+      {{#each this}}
+      <div class="lobia-statcard">
+        <a class="lobia-statcard-name" data-action="rollStat" data-stat="{{this.key}}"
+           data-tooltip="{{this.statTooltip}}">
+          <i class="fa-solid fa-dice-d20"></i><span>{{this.label}}</span>
+        </a>
+
+        <div class="lobia-statcard-row">
+          <div class="lobia-statcell">
+            <span class="lobia-statcell-label">{{localize "LOBIA.StatCol.base"}}</span>
+            {{#if this.hasAutomaticBonus}}
+            <span class="lobia-derived-base {{this.natureClass}}" data-tooltip="{{this.baseTooltip}}">{{this.effectiveBase}}</span>
+            {{else}}
+            <input type="number" min="0" max="100" step="1"
+                   name="system.stats.{{this.key}}.base" value="{{this.base}}">
+            {{/if}}
+          </div>
+
+          <span class="lobia-statop">+</span>
+
+          <div class="lobia-statcell lobia-statcell-mod {{this.modClass}}">
+            <span class="lobia-statcell-label">{{localize "LOBIA.StatCol.mod"}}</span>
+            <input type="number" step="1"
+                   name="system.stats.{{this.key}}.mod" value="{{this.mod}}">
+          </div>
+
+          <span class="lobia-statop">=</span>
+
+          <div class="lobia-statcell lobia-statcell-total">
+            <span class="lobia-statcell-label">{{localize "LOBIA.StatCol.total"}}</span>
+            <span class="lobia-stat-total">{{this.total}}</span>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    {{/each}}
+  </div>
+
+  <div class="lobia-stats-footer">
+    <span class="lobia-stats-sum">
+      {{localize "LOBIA.StatCol.baseTotal"}} <b>{{statBaseTotal}}</b>
+    </span>
+  </div>
+</section>

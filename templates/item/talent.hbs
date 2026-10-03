@@ -1,0 +1,18 @@
+<div class="lobia-item-part">
+  <header class="lobia-header">
+    <div class="lobia-header-fields">
+      <input class="lobia-name" type="text" name="name" value="{{item.name}}" placeholder="{{localize 'LOBIA.Name'}}">
+    </div>
+  </header>
+  <div class="lobia-sheet-body lobia-talent-sheet">
+    <label>{{localize "LOBIA.Talent.category"}}
+      <select name="system.category">{{selectOptions categoryChoices selected=system.category}}</select>
+    </label>
+    <label>{{localize "LOBIA.Talent.key"}}
+      <input type="text" name="system.key" value="{{system.key}}" data-tooltip="{{localize 'LOBIA.Talent.keyHint'}}">
+    </label>
+    <label>{{localize "LOBIA.Talent.effect"}}
+      <textarea name="system.effect" rows="9">{{system.effect}}</textarea>
+    </label>
+  </div>
+</div>

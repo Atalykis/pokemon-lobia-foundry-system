@@ -1,0 +1,22 @@
+<div class="lobia-item-part">
+  <header class="lobia-header">
+    <div class="lobia-header-fields">
+      <input class="lobia-name" type="text" name="name" value="{{item.name}}" placeholder="{{localize 'LOBIA.Name'}}">
+    </div>
+  </header>
+  <div class="lobia-sheet-body lobia-nature-sheet">
+    <label>{{localize "LOBIA.Nature.key"}}
+      <input type="text" name="system.key" value="{{system.key}}" data-tooltip="{{localize 'LOBIA.Nature.keyHint'}}">
+    </label>
+    <div class="lobia-nature-range">
+      <label>{{localize "LOBIA.Nature.min"}} <input type="number" min="1" max="100" step="1" name="system.min" value="{{system.min}}"></label>
+      <label>{{localize "LOBIA.Nature.max"}} <input type="number" min="1" max="100" step="1" name="system.max" value="{{system.max}}"></label>
+    </div>
+    <h2>{{localize "LOBIA.Nature.effects"}}</h2>
+    {{#each statFields}}
+    <label class="lobia-nature-effect">{{this.label}}
+      <input type="number" step="1" name="system.effects.{{this.key}}" value="{{this.value}}">
+    </label>
+    {{/each}}
+  </div>
+</div>
